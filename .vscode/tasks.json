@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1 安装本地环境",
+      "type": "shell",
+      "command": "${workspaceFolder}\\01_install_local_env.bat",
+      "problemMatcher": []
+    },
+    {
+      "label": "2 启动本地SQLite版",
+      "type": "shell",
+      "command": "${workspaceFolder}\\02_run_local_sqlite.bat",
+      "problemMatcher": []
+    },
+    {
+      "label": "3 启动正式多人Docker版",
+      "type": "shell",
+      "command": "docker",
+      "args": [
+        "compose",
+        "up",
+        "--build"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "4 运行测试",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

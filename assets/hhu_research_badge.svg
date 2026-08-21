@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+<defs><linearGradient id="b" x1="0" x2="1"><stop stop-color="#084b8a"/><stop offset="1" stop-color="#16a5b6"/></linearGradient></defs>
+<circle cx="128" cy="128" r="118" fill="#fff" stroke="#0a5699" stroke-width="10"/>
+<circle cx="128" cy="128" r="100" fill="none" stroke="#1aa5b6" stroke-width="4"/>
+<text x="128" y="61" text-anchor="middle" font-family="Arial" font-size="32" font-weight="700" fill="#0a5699">HHU</text>
+<path d="M78 96h100M95 72h66" stroke="#0a5699" stroke-width="10" stroke-linecap="round"/>
+<path d="M48 154c30-42 60-42 90 0 22 31 44 31 70 0" fill="none" stroke="#0a5699" stroke-width="14" stroke-linecap="round"/>
+<path d="M50 184c29-29 59-29 88 0 22 22 44 22 68 0" fill="none" stroke="#1aa5b6" stroke-width="12" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,3284 @@
+{
+  "type": "FeatureCollection",
+  "name": "river_network_full",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "1",
+        "name": "七房巷河",
+        "section_count": 2,
+        "point_count": 72,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.50458573073358,
+            31.53141197094086
+          ],
+          [
+            120.50345430893255,
+            31.52361259755365
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "2",
+        "name": "三河港",
+        "section_count": 3,
+        "point_count": 122,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.40394617172814,
+            31.468806576723868
+          ],
+          [
+            120.40379861859124,
+            31.460574747700424
+          ],
+          [
+            120.4046076615784,
+            31.45244745332564
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "3",
+        "name": "下甸桥浜",
+        "section_count": 2,
+        "point_count": 201,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.34590327656129,
+            31.5280526346144
+          ],
+          [
+            120.35098746072556,
+            31.531752192707174
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "4",
+        "name": "东塘街浜",
+        "section_count": 1,
+        "point_count": 62,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.51195928262625,
+            31.473190565781284
+          ],
+          [
+            120.51199420399259,
+            31.47345851858737
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "5",
+        "name": "东庄巷",
+        "section_count": 1,
+        "point_count": 31,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.46958902215492,
+            31.546692056852123
+          ],
+          [
+            120.46959384678966,
+            31.546561935227295
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "6",
+        "name": "东黄更上河",
+        "section_count": 2,
+        "point_count": 74,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.5109442397584,
+            31.48406384607389
+          ],
+          [
+            120.51209984956301,
+            31.480047362129028
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "7",
+        "name": "东黄石浜",
+        "section_count": 1,
+        "point_count": 22,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.3686977435613,
+            31.557146354535632
+          ],
+          [
+            120.36879780265966,
+            31.557119983726952
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "8",
+        "name": "九曲河",
+        "section_count": 5,
+        "point_count": 216,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.49524122449029,
+            31.507695510735076
+          ],
+          [
+            120.5043485778498,
+            31.50203710643278
+          ],
+          [
+            120.50327225799558,
+            31.498131659542814
+          ],
+          [
+            120.50631329124604,
+            31.495760416854715
+          ],
+          [
+            120.51800663862865,
+            31.493957141373855
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "9",
+        "name": "京杭运河",
+        "section_count": 5,
+        "point_count": 1096,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.33412045779141,
+            31.53083325476684
+          ],
+          [
+            120.34056399700393,
+            31.52957129262378
+          ],
+          [
+            120.34549021097507,
+            31.526591623020554
+          ],
+          [
+            120.42411040427548,
+            31.453206752575095
+          ],
+          [
+            120.43047339712238,
+            31.446817041933812
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "10",
+        "name": "伯渎港",
+        "section_count": 17,
+        "point_count": 1607,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.32229892395989,
+            31.558972431429968
+          ],
+          [
+            120.33930371819422,
+            31.55778626937862
+          ],
+          [
+            120.35186236596381,
+            31.556793417314587
+          ],
+          [
+            120.36569461672723,
+            31.556071710551667
+          ],
+          [
+            120.38074547590405,
+            31.555271355205242
+          ],
+          [
+            120.38929524305463,
+            31.554974311408984
+          ],
+          [
+            120.40422530650082,
+            31.55191009069019
+          ],
+          [
+            120.41953808636251,
+            31.54785534614209
+          ],
+          [
+            120.43337462909157,
+            31.544004522759398
+          ],
+          [
+            120.44937554116699,
+            31.540107236800974
+          ],
+          [
+            120.47582235893287,
+            31.52596318183344
+          ],
+          [
+            120.48447808934077,
+            31.520772346679752
+          ],
+          [
+            120.49832281283071,
+            31.511582368296935
+          ],
+          [
+            120.50747058226571,
+            31.50585924682613
+          ],
+          [
+            120.517920605313,
+            31.50198867560873
+          ],
+          [
+            120.52895607721624,
+            31.492328125551214
+          ],
+          [
+            120.53239041060115,
+            31.48995485731977
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "11",
+        "name": "六房上河",
+        "section_count": 1,
+        "point_count": 39,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.50891747853183,
+            31.50655364371183
+          ],
+          [
+            120.50910458678749,
+            31.506601808073626
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "12",
+        "name": "冷渎港",
+        "section_count": 6,
+        "point_count": 281,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.30837584041954,
+            31.573861776116285
+          ],
+          [
+            120.31046991098647,
+            31.571640840149357
+          ],
+          [
+            120.32048808462145,
+            31.5721485670023
+          ],
+          [
+            120.33134687538534,
+            31.569810149956368
+          ],
+          [
+            120.34209833648457,
+            31.568200548773156
+          ],
+          [
+            120.35214727809904,
+            31.570238515173283
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "13",
+        "name": "凤凰浜",
+        "section_count": 3,
+        "point_count": 127,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.42077187084367,
+            31.546679614108758
+          ],
+          [
+            120.42018970190776,
+            31.540660544459588
+          ],
+          [
+            120.41096362203389,
+            31.531164882081296
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "14",
+        "name": "刘子头浜",
+        "section_count": 1,
+        "point_count": 33,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.54570339299971,
+            31.481035114191666
+          ],
+          [
+            120.545682733449,
+            31.48117447885632
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "15",
+        "name": "前进河",
+        "section_count": 1,
+        "point_count": 21,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.33867938478858,
+            31.5552146690119
+          ],
+          [
+            120.33860786949501,
+            31.555155830618958
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "16",
+        "name": "协新浜",
+        "section_count": 2,
+        "point_count": 46,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.40490638728495,
+            31.57027987195877
+          ],
+          [
+            120.399583236906,
+            31.55412695033364
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "17",
+        "name": "南前港",
+        "section_count": 4,
+        "point_count": 220,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.52142758161212,
+            31.52626511615826
+          ],
+          [
+            120.5176648553421,
+            31.51479139236231
+          ],
+          [
+            120.512483003466,
+            31.513596357161603
+          ],
+          [
+            120.51471599334384,
+            31.50521660149799
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "18",
+        "name": "南河港",
+        "section_count": 3,
+        "point_count": 120,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.42642807749385,
+            31.475485888139055
+          ],
+          [
+            120.43256301859492,
+            31.476568424026958
+          ],
+          [
+            120.44755307495844,
+            31.474510737209897
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "19",
+        "name": "古运河",
+        "section_count": 6,
+        "point_count": 483,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.30782330840123,
+            31.58256227289641
+          ],
+          [
+            120.30730001505668,
+            31.57618633878707
+          ],
+          [
+            120.30732514421236,
+            31.567532924435174
+          ],
+          [
+            120.30497348914068,
+            31.565952133983544
+          ],
+          [
+            120.33461946181701,
+            31.537141102883364
+          ],
+          [
+            120.33987132007438,
+            31.532258400803883
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "20",
+        "name": "古镇河",
+        "section_count": 1,
+        "point_count": 30,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.42961477883364,
+            31.54425345506496
+          ],
+          [
+            120.42947851753117,
+            31.544301279165012
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "21",
+        "name": "同心河",
+        "section_count": 1,
+        "point_count": 29,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.39558626559682,
+            31.54699389057643
+          ],
+          [
+            120.39570417868146,
+            31.54706011117618
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "22",
+        "name": "向东河",
+        "section_count": 1,
+        "point_count": 29,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.4193697942621,
+            31.553529943262077
+          ],
+          [
+            120.4192387504327,
+            31.553571110605738
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "23",
+        "name": "吕家里河",
+        "section_count": 1,
+        "point_count": 35,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.5102826375351,
+            31.51563349996648
+          ],
+          [
+            120.51025425859201,
+            31.515486914513467
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "24",
+        "name": "吴家浜",
+        "section_count": 1,
+        "point_count": 34,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.52662864779623,
+            31.4885177262621
+          ],
+          [
+            120.52646086095932,
+            31.4885320167349
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "25",
+        "name": "吴少洚浜",
+        "section_count": 1,
+        "point_count": 124,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.37078656951668,
+            31.50175346900924
+          ],
+          [
+            120.37125371475291,
+            31.501379159226442
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "26",
+        "name": "吴村浜",
+        "section_count": 1,
+        "point_count": 17,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.3321888094759,
+            31.57140509425891
+          ],
+          [
+            120.33211334570714,
+            31.571423418033785
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "27",
+        "name": "周三房浜",
+        "section_count": 2,
+        "point_count": 82,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.48722911881562,
+            31.51548899390829
+          ],
+          [
+            120.48588932686249,
+            31.501744778662296
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "28",
+        "name": "周泾河",
+        "section_count": 2,
+        "point_count": 64,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.43171456713213,
+            31.56878983506788
+          ],
+          [
+            120.45703267914787,
+            31.563357135222727
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "29",
+        "name": "周泾浜",
+        "section_count": 8,
+        "point_count": 338,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.38432890920599,
+            31.544074491848818
+          ],
+          [
+            120.38117376771437,
+            31.535980758775217
+          ],
+          [
+            120.38088011177277,
+            31.52967041109887
+          ],
+          [
+            120.40053610078947,
+            31.52462372028467
+          ],
+          [
+            120.3897222311887,
+            31.52932852993827
+          ],
+          [
+            120.37395614868657,
+            31.5227830301652
+          ],
+          [
+            120.37042795543071,
+            31.517157050390548
+          ],
+          [
+            120.3622548627921,
+            31.513464374029255
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "30",
+        "name": "唐庄河",
+        "section_count": 1,
+        "point_count": 31,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.44794820670842,
+            31.497368203570677
+          ],
+          [
+            120.44780706850479,
+            31.497414539992445
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "31",
+        "name": "唐明河",
+        "section_count": 4,
+        "point_count": 189,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.47648861146567,
+            31.49476533708341
+          ],
+          [
+            120.49582304787268,
+            31.491661091018674
+          ],
+          [
+            120.51959770653767,
+            31.489307633759918
+          ],
+          [
+            120.5258617134753,
+            31.491544777236307
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "32",
+        "name": "四河港",
+        "section_count": 1,
+        "point_count": 43,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.41028429375254,
+            31.451282226614588
+          ],
+          [
+            120.41049946149309,
+            31.451287697125803
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "33",
+        "name": "坊桥港",
+        "section_count": 5,
+        "point_count": 455,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.53056200279255,
+            31.488603120272465
+          ],
+          [
+            120.5312688262482,
+            31.484803031240773
+          ],
+          [
+            120.53116934995938,
+            31.483457827217478
+          ],
+          [
+            120.53038080106039,
+            31.47792881100039
+          ],
+          [
+            120.53142770445172,
+            31.47333578251797
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "34",
+        "name": "坟塘桥浜",
+        "section_count": 2,
+        "point_count": 73,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.43188805928445,
+            31.4559065561978
+          ],
+          [
+            120.43554148367267,
+            31.45752331908363
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "35",
+        "name": "夏更上河",
+        "section_count": 2,
+        "point_count": 52,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.49820556729637,
+            31.533309486697334
+          ],
+          [
+            120.49586615888822,
+            31.526904623959986
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "36",
+        "name": "外浜",
+        "section_count": 1,
+        "point_count": 29,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.44334589404701,
+            31.452703588950065
+          ],
+          [
+            120.44348794246689,
+            31.452685510429934
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "37",
+        "name": "大二房桥港",
+        "section_count": 2,
+        "point_count": 87,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.41150345342784,
+            31.51421786848791
+          ],
+          [
+            120.42422837044477,
+            31.511382733055598
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "38",
+        "name": "大包庄河",
+        "section_count": 4,
+        "point_count": 126,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.43217630194015,
+            31.480498470580653
+          ],
+          [
+            120.43222580920401,
+            31.47584930107925
+          ],
+          [
+            120.43565545162872,
+            31.46631174910897
+          ],
+          [
+            120.4298194400882,
+            31.457476897957513
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "39",
+        "name": "大坟上河",
+        "section_count": 1,
+        "point_count": 34,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.51222658830108,
+            31.506489728083764
+          ],
+          [
+            120.51206715268137,
+            31.506536100218685
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "40",
+        "name": "夹蠡河",
+        "section_count": 9,
+        "point_count": 473,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.40860822533483,
+            31.58160391503359
+          ],
+          [
+            120.4064377971872,
+            31.574930401058776
+          ],
+          [
+            120.4082435126492,
+            31.571768865643733
+          ],
+          [
+            120.41431030881856,
+            31.564051812120958
+          ],
+          [
+            120.42400680168484,
+            31.55674530558335
+          ],
+          [
+            120.42627256931502,
+            31.554951960819913
+          ],
+          [
+            120.43214342702096,
+            31.551446241492783
+          ],
+          [
+            120.43639759394534,
+            31.54782450596576
+          ],
+          [
+            120.44227769176509,
+            31.544253522550264
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "41",
+        "name": "奚家坝浜",
+        "section_count": 1,
+        "point_count": 36,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.49507957608732,
+            31.515391582093127
+          ],
+          [
+            120.4949017611751,
+            31.515410857644067
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "42",
+        "name": "宅基浜",
+        "section_count": 3,
+        "point_count": 122,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.40286269494757,
+            31.521879517140512
+          ],
+          [
+            120.38470673071556,
+            31.504082584605342
+          ],
+          [
+            120.3794697507776,
+            31.49854807427775
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "43",
+        "name": "安桥浜",
+        "section_count": 4,
+        "point_count": 175,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.45835077350559,
+            31.469056822122532
+          ],
+          [
+            120.45947120896533,
+            31.463531890310144
+          ],
+          [
+            120.46227031849642,
+            31.457361488155453
+          ],
+          [
+            120.46443238663447,
+            31.450885483212428
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "44",
+        "name": "寒儒桥河",
+        "section_count": 5,
+        "point_count": 218,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.49318668435009,
+            31.486822701203067
+          ],
+          [
+            120.49727100542178,
+            31.48689438678212
+          ],
+          [
+            120.50436899720053,
+            31.486495295715482
+          ],
+          [
+            120.51883332201093,
+            31.48253268654868
+          ],
+          [
+            120.52822828704717,
+            31.479266652653433
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "45",
+        "name": "小桥下浜",
+        "section_count": 2,
+        "point_count": 39,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.34829913500322,
+            31.55308441902144
+          ],
+          [
+            120.35172895819804,
+            31.55127271146013
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "46",
+        "name": "岳公浜",
+        "section_count": 1,
+        "point_count": 41,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.47699214146252,
+            31.452593469667022
+          ],
+          [
+            120.47679225581987,
+            31.45255301583271
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "47",
+        "name": "川桥头河",
+        "section_count": 2,
+        "point_count": 64,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.43695386625801,
+            31.485310031216105
+          ],
+          [
+            120.45336662327965,
+            31.48424139358944
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "48",
+        "name": "庄里浜",
+        "section_count": 1,
+        "point_count": 19,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.32711053758644,
+            31.567862053607328
+          ],
+          [
+            120.32703146606295,
+            31.567902488574923
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "49",
+        "name": "张塘河",
+        "section_count": 6,
+        "point_count": 594,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.47010066164725,
+            31.531874490134168
+          ],
+          [
+            120.47778978992663,
+            31.532708933107696
+          ],
+          [
+            120.49342474894617,
+            31.534249560581113
+          ],
+          [
+            120.50445518855902,
+            31.534824028388222
+          ],
+          [
+            120.50673561086082,
+            31.53546531186322
+          ],
+          [
+            120.51674913647437,
+            31.531548166063796
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "50",
+        "name": "徐塘河桥",
+        "section_count": 7,
+        "point_count": 386,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.45713281349933,
+            31.47964612118182
+          ],
+          [
+            120.46710881750738,
+            31.48103984025195
+          ],
+          [
+            120.47741662045733,
+            31.482445057506357
+          ],
+          [
+            120.49892818400198,
+            31.480946194961113
+          ],
+          [
+            120.50295308122682,
+            31.48028476417433
+          ],
+          [
+            120.51079361383918,
+            31.47578712108204
+          ],
+          [
+            120.51336137995933,
+            31.473630006393854
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "51",
+        "name": "惠家里河",
+        "section_count": 1,
+        "point_count": 41,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.50557702285816,
+            31.531646926057405
+          ],
+          [
+            120.50554038975837,
+            31.531472748226417
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "52",
+        "name": "惠更上浜",
+        "section_count": 1,
+        "point_count": 34,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.41574245245154,
+            31.55523150221784
+          ],
+          [
+            120.41580467054358,
+            31.55536794262953
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "53",
+        "name": "打溪巷浜",
+        "section_count": 1,
+        "point_count": 20,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.35105093852692,
+            31.52357072466673
+          ],
+          [
+            120.35106316145017,
+            31.52348887254194
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "54",
+        "name": "摇光河",
+        "section_count": 1,
+        "point_count": 35,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.41639534069057,
+            31.455780401327054
+          ],
+          [
+            120.41653435198405,
+            31.45569188910282
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "55",
+        "name": "新宅河",
+        "section_count": 1,
+        "point_count": 29,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.48443414058191,
+            31.484703961452258
+          ],
+          [
+            120.4845757305783,
+            31.484711695791752
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "56",
+        "name": "旺庄港",
+        "section_count": 5,
+        "point_count": 181,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.3491668319807,
+            31.55620170022707
+          ],
+          [
+            120.34678970880597,
+            31.55335744786122
+          ],
+          [
+            120.34397105904152,
+            31.55034788749903
+          ],
+          [
+            120.3414046357581,
+            31.5460017467235
+          ],
+          [
+            120.33922992362885,
+            31.542309352246285
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "57",
+        "name": "春丰河",
+        "section_count": 6,
+        "point_count": 168,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.36796216808911,
+            31.542641484947715
+          ],
+          [
+            120.3724197347281,
+            31.545720376254557
+          ],
+          [
+            120.37092736425959,
+            31.549658354321025
+          ],
+          [
+            120.36777503883093,
+            31.555115198338097
+          ],
+          [
+            120.37876011128203,
+            31.545754509050372
+          ],
+          [
+            120.38557959542484,
+            31.54629932489571
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "58",
+        "name": "春雷河",
+        "section_count": 1,
+        "point_count": 18,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.34352106237189,
+            31.542317274354545
+          ],
+          [
+            120.34358996867748,
+            31.542355689620198
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "59",
+        "name": "望虞河",
+        "section_count": 15,
+        "point_count": 4057,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.40608201482733,
+            31.44616586271443
+          ],
+          [
+            120.41636188284545,
+            31.450535703197257
+          ],
+          [
+            120.42918971214007,
+            31.45083552641432
+          ],
+          [
+            120.43672863357878,
+            31.4500394364465
+          ],
+          [
+            120.4451829348516,
+            31.448751241277392
+          ],
+          [
+            120.45847187309246,
+            31.44752234310181
+          ],
+          [
+            120.47016837801765,
+            31.448590482393328
+          ],
+          [
+            120.47885934732471,
+            31.451396408470362
+          ],
+          [
+            120.4895940110291,
+            31.452947596716548
+          ],
+          [
+            120.49817596110263,
+            31.459928332729017
+          ],
+          [
+            120.50921966346735,
+            31.460566417490224
+          ],
+          [
+            120.51649891529496,
+            31.468872419842526
+          ],
+          [
+            120.52932388991012,
+            31.469618745463684
+          ],
+          [
+            120.54102713881012,
+            31.47429719968863
+          ],
+          [
+            120.54739230559869,
+            31.478515820227212
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "60",
+        "name": "朱塘河",
+        "section_count": 4,
+        "point_count": 177,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.53568676366416,
+            31.489494852318476
+          ],
+          [
+            120.54000844050823,
+            31.488621973141942
+          ],
+          [
+            120.53812844624906,
+            31.483531121403637
+          ],
+          [
+            120.53820173669126,
+            31.481010869019112
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "61",
+        "name": "杨家浜",
+        "section_count": 1,
+        "point_count": 41,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.47148673740813,
+            31.492313800680105
+          ],
+          [
+            120.47169403759862,
+            31.492305235654598
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "62",
+        "name": "杨家里河",
+        "section_count": 2,
+        "point_count": 101,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.53254197981536,
+            31.47940467568127
+          ],
+          [
+            120.54024000817338,
+            31.47907592223085
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "63",
+        "name": "杨木桥港",
+        "section_count": 2,
+        "point_count": 56,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.3432340290916,
+            31.56649210022296
+          ],
+          [
+            120.33742197730237,
+            31.558280391011312
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "64",
+        "name": "桑园里浜",
+        "section_count": 1,
+        "point_count": 45,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.52959706722939,
+            31.481786215840113
+          ],
+          [
+            120.52956799389578,
+            31.481594470942422
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "65",
+        "name": "桥头巷浜",
+        "section_count": 1,
+        "point_count": 30,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.52383671934436,
+            31.489429488617937
+          ],
+          [
+            120.52368904893237,
+            31.48942782915107
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "66",
+        "name": "梅东河",
+        "section_count": 1,
+        "point_count": 22,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.43458365064348,
+            31.545385273183978
+          ],
+          [
+            120.43468645038857,
+            31.545366236971866
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "67",
+        "name": "梅花浜",
+        "section_count": 2,
+        "point_count": 77,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.43034731326618,
+            31.54171853515462
+          ],
+          [
+            120.42581093843037,
+            31.528353808292344
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "68",
+        "name": "梅花港",
+        "section_count": 2,
+        "point_count": 68,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.44782845081444,
+            31.53784300925309
+          ],
+          [
+            120.44016320543666,
+            31.514847290654988
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "69",
+        "name": "梅苑浜",
+        "section_count": 1,
+        "point_count": 17,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.43736645251431,
+            31.54170041774712
+          ],
+          [
+            120.43730345717724,
+            31.541740793601903
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "70",
+        "name": "梅荆浜",
+        "section_count": 1,
+        "point_count": 34,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.44148658256036,
+            31.540522059320907
+          ],
+          [
+            120.4413281418201,
+            31.540575897883365
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "71",
+        "name": "梅西河",
+        "section_count": 1,
+        "point_count": 19,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.42569174568649,
+            31.557415240211352
+          ],
+          [
+            120.42560582439302,
+            31.557443466259635
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "72",
+        "name": "江溪港",
+        "section_count": 3,
+        "point_count": 184,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.3660552708611,
+            31.578177217206708
+          ],
+          [
+            120.35778983780544,
+            31.570169035209283
+          ],
+          [
+            120.35060254715025,
+            31.558330089243817
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "73",
+        "name": "沈家桥浜",
+        "section_count": 11,
+        "point_count": 568,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.49484937177007,
+            31.51247149657116
+          ],
+          [
+            120.49488186864747,
+            31.507101275752486
+          ],
+          [
+            120.49501871154851,
+            31.50343513317882
+          ],
+          [
+            120.49632796030004,
+            31.492185113339538
+          ],
+          [
+            120.49633631981668,
+            31.488396831207847
+          ],
+          [
+            120.49613280696595,
+            31.482091486468892
+          ],
+          [
+            120.4934438033807,
+            31.4804780061595
+          ],
+          [
+            120.49413105926811,
+            31.47328942040739
+          ],
+          [
+            120.49515637234381,
+            31.471223563651357
+          ],
+          [
+            120.4991760358491,
+            31.46720989950689
+          ],
+          [
+            120.5052874362749,
+            31.46216500042332
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "74",
+        "name": "浜斗上浜",
+        "section_count": 1,
+        "point_count": 39,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.41922286343619,
+            31.48852828054885
+          ],
+          [
+            120.41932293527185,
+            31.488382794872383
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "75",
+        "name": "潘甲里浜",
+        "section_count": 2,
+        "point_count": 61,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.35668033806186,
+            31.52200924911431
+          ],
+          [
+            120.36112544874514,
+            31.526225557632156
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "76",
+        "name": "火车浜",
+        "section_count": 1,
+        "point_count": 54,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.53414535185468,
+            31.488787392150346
+          ],
+          [
+            120.53388044475727,
+            31.488842438449687
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "77",
+        "name": "王家大桥河",
+        "section_count": 4,
+        "point_count": 319,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.49644936032645,
+            31.54463668311847
+          ],
+          [
+            120.49863461166886,
+            31.542168205059305
+          ],
+          [
+            120.50112422761437,
+            31.542891946027726
+          ],
+          [
+            120.50314159433523,
+            31.537611373589428
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "78",
+        "name": "玛桥浜",
+        "section_count": 3,
+        "point_count": 66,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.36380648294273,
+            31.572659701183337
+          ],
+          [
+            120.3645738687906,
+            31.56656203305094
+          ],
+          [
+            120.37854501953427,
+            31.55587785663053
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "79",
+        "name": "界泾浜",
+        "section_count": 1,
+        "point_count": 17,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.33771291238192,
+            31.550875897449362
+          ],
+          [
+            120.33777047236116,
+            31.55092095650797
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "80",
+        "name": "白堍浜",
+        "section_count": 2,
+        "point_count": 97,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.37280884853233,
+            31.502972232797642
+          ],
+          [
+            120.38278362721272,
+            31.511642516185194
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "81",
+        "name": "白家浜",
+        "section_count": 1,
+        "point_count": 42,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.39349753510436,
+            31.487114263445047
+          ],
+          [
+            120.39336561392498,
+            31.48725341464977
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "82",
+        "name": "硕放桥浜",
+        "section_count": 1,
+        "point_count": 32,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.42073057634384,
+            31.47395974712819
+          ],
+          [
+            120.42057980258943,
+            31.473917384952852
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "83",
+        "name": "碧水河",
+        "section_count": 1,
+        "point_count": 1,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.3667366279401,
+            31.488402226984057
+          ],
+          [
+            120.3667366279401,
+            31.488402226984057
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "84",
+        "name": "至德河",
+        "section_count": 2,
+        "point_count": 74,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.48137596372781,
+            31.54278859242314
+          ],
+          [
+            120.4801438005637,
+            31.539379894912866
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "85",
+        "name": "至礼河",
+        "section_count": 2,
+        "point_count": 65,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.4749193086155,
+            31.541587591082298
+          ],
+          [
+            120.48201063080086,
+            31.540664198748367
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "86",
+        "name": "荣更上河",
+        "section_count": 2,
+        "point_count": 89,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.47294394679548,
+            31.53539700426134
+          ],
+          [
+            120.47554629087045,
+            31.547848195355794
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "87",
+        "name": "荷典桥河",
+        "section_count": 3,
+        "point_count": 165,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.47189173776272,
+            31.493172632533398
+          ],
+          [
+            120.46658973056485,
+            31.492839110974863
+          ],
+          [
+            120.456249798635,
+            31.493398493045746
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "88",
+        "name": "董家弄河",
+        "section_count": 2,
+        "point_count": 64,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.47536659516295,
+            31.49701913956866
+          ],
+          [
+            120.49264745778562,
+            31.500233064512226
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "89",
+        "name": "蚂蝗浜",
+        "section_count": 2,
+        "point_count": 70,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.42382386951702,
+            31.457867026128273
+          ],
+          [
+            120.43502048249393,
+            31.465934097238755
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "90",
+        "name": "西仓浜",
+        "section_count": 4,
+        "point_count": 193,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.45923705720752,
+            31.563438249756253
+          ],
+          [
+            120.45570598381556,
+            31.555425911558523
+          ],
+          [
+            120.45404214420621,
+            31.549667860496566
+          ],
+          [
+            120.44885554239606,
+            31.541162080824762
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "91",
+        "name": "许巷桥浜",
+        "section_count": 2,
+        "point_count": 61,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.39348470293615,
+            31.563855409450582
+          ],
+          [
+            120.3939742461915,
+            31.555439469450103
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "92",
+        "name": "谈家桥河",
+        "section_count": 2,
+        "point_count": 88,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.39928614196087,
+            31.472994540977748
+          ],
+          [
+            120.39762051024559,
+            31.46061864546924
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "93",
+        "name": "谢家湾浜",
+        "section_count": 1,
+        "point_count": 58,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.45918931934455,
+            31.55759633070653
+          ],
+          [
+            120.4590986211172,
+            31.55735679506726
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "94",
+        "name": "走马塘",
+        "section_count": 10,
+        "point_count": 866,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.47917685634108,
+            31.55687812134699
+          ],
+          [
+            120.47182097762084,
+            31.544156572939578
+          ],
+          [
+            120.46622726096095,
+            31.526866836913236
+          ],
+          [
+            120.46260942496492,
+            31.514144616740143
+          ],
+          [
+            120.45919859087932,
+            31.497859011611336
+          ],
+          [
+            120.44318467928794,
+            31.493395421701383
+          ],
+          [
+            120.43559551610822,
+            31.485802213163858
+          ],
+          [
+            120.42694599456965,
+            31.477738392141536
+          ],
+          [
+            120.42069445308168,
+            31.47111827251926
+          ],
+          [
+            120.41453021051808,
+            31.466140896924525
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "95",
+        "name": "赵家桥河",
+        "section_count": 2,
+        "point_count": 120,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.40553061067581,
+            31.508221515565044
+          ],
+          [
+            120.42463554333942,
+            31.479549102559687
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "96",
+        "name": "里夫泾浜",
+        "section_count": 5,
+        "point_count": 200,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.45395970820334,
+            31.483238163634727
+          ],
+          [
+            120.45171146347528,
+            31.478605987051516
+          ],
+          [
+            120.4479019629129,
+            31.474056925568572
+          ],
+          [
+            120.44487691704803,
+            31.461864425571555
+          ],
+          [
+            120.43894305250957,
+            31.453343692058073
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "97",
+        "name": "金娥桥浜",
+        "section_count": 1,
+        "point_count": 35,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.46805647662056,
+            31.492177679610915
+          ],
+          [
+            120.46788273219403,
+            31.492182436423892
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "98",
+        "name": "钱家湾浜",
+        "section_count": 1,
+        "point_count": 43,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.41851209769357,
+            31.487125410952277
+          ],
+          [
+            120.41847370802675,
+            31.48694183207474
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "99",
+        "name": "陆房桥浜",
+        "section_count": 1,
+        "point_count": 44,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.42452988042696,
+            31.47225136717949
+          ],
+          [
+            120.42446703912428,
+            31.472433458449093
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "100",
+        "name": "陈家桥浜",
+        "section_count": 1,
+        "point_count": 37,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.38864500572274,
+            31.574040406376827
+          ],
+          [
+            120.38867894537137,
+            31.574197409180076
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "101",
+        "name": "陈家浜",
+        "section_count": 2,
+        "point_count": 59,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.45956996190212,
+            31.53119424215053
+          ],
+          [
+            120.45367986165165,
+            31.513743893305744
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "102",
+        "name": "陶潼浜",
+        "section_count": 1,
+        "point_count": 55,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.39828128668712,
+            31.55065854432765
+          ],
+          [
+            120.39854072477803,
+            31.55056982125072
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "103",
+        "name": "顾家湾浜",
+        "section_count": 1,
+        "point_count": 33,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.43625585543938,
+            31.461491725480702
+          ],
+          [
+            120.43614072497881,
+            31.461395733185945
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "104",
+        "name": "香泾浜",
+        "section_count": 7,
+        "point_count": 286,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.41050205031286,
+            31.545203676401737
+          ],
+          [
+            120.40883222645685,
+            31.537139511999772
+          ],
+          [
+            120.40254092436201,
+            31.52448892785111
+          ],
+          [
+            120.40679143468239,
+            31.51286867299259
+          ],
+          [
+            120.40456477858561,
+            31.51044711121275
+          ],
+          [
+            120.39840604316942,
+            31.504712601143847
+          ],
+          [
+            120.38469274348277,
+            31.494753607239847
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "105",
+        "name": "马桥港",
+        "section_count": 10,
+        "point_count": 505,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.47952240691396,
+            31.518897014506383
+          ],
+          [
+            120.47379823720233,
+            31.508582363003356
+          ],
+          [
+            120.4749587308891,
+            31.495738688769624
+          ],
+          [
+            120.47427570022268,
+            31.4944176210788
+          ],
+          [
+            120.47551368876067,
+            31.489488763212286
+          ],
+          [
+            120.47639611051049,
+            31.483139865755923
+          ],
+          [
+            120.47551717343958,
+            31.480388260796637
+          ],
+          [
+            120.47941842304662,
+            31.472515398545806
+          ],
+          [
+            120.4799976775623,
+            31.459228777352326
+          ],
+          [
+            120.47915343825244,
+            31.45305853993363
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "106",
+        "name": "驴桥头浜",
+        "section_count": 2,
+        "point_count": 59,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.34536560886141,
+            31.556296458443644
+          ],
+          [
+            120.33910560713115,
+            31.54964866197028
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "107",
+        "name": "高阡桥浜",
+        "section_count": 2,
+        "point_count": 66,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.37025215737799,
+            31.575740115723082
+          ],
+          [
+            120.39250534066852,
+            31.56308984424056
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "108",
+        "name": "魏巷浜",
+        "section_count": 1,
+        "point_count": 21,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.37375986202281,
+            31.544080489819216
+          ],
+          [
+            120.37366192230792,
+            31.544106335209612
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "109",
+        "name": "鸿声河",
+        "section_count": 3,
+        "point_count": 144,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.48734594700906,
+            31.521284139265873
+          ],
+          [
+            120.50828809928275,
+            31.521637169068963
+          ],
+          [
+            120.51591151065423,
+            31.520829031912555
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "reach_id": "110",
+        "name": "鸿里河",
+        "section_count": 2,
+        "point_count": 126,
+        "source": "river.txt",
+        "display_crs": "WGS84",
+        "source_crs_note": "Converted for display from zone-prefixed CGCS2000 3-degree Gauss-Kruger zone 40 (EPSG:4528)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.47673283753426,
+            31.46223623230195
+          ],
+          [
+            120.49346549888563,
+            31.471767467442508
+          ]
+        ]
+      }
+    }
+  ]
+}

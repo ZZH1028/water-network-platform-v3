@@ -1,0 +1,10 @@
+{
+  "station_id": "1",
+  "current_level": 1.32,
+  "rainfall": 18.5,
+  "tide_level": 3.6,
+  "gate_factor": 0.72,
+  "pump_factor": 0.85,
+  "hours": 24,
+  "created_by": "系统管理员"
+}

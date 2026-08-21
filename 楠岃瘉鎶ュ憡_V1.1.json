@@ -1,0 +1,23 @@
+{
+  "version": "V1.1 整合增强版",
+  "base": "V1.0 正式多人版",
+  "checks": {
+    "python_compileall": "passed",
+    "pytest": {"status": "passed", "passed": 39},
+    "gis_integration": {
+      "status": "passed",
+      "stations": 194,
+      "gate_pump_facilities": 32,
+      "rivers": 110,
+      "sections": 305,
+      "section_points": 19317,
+      "real_station_prediction": "passed",
+      "prediction_to_scheduling": "passed",
+      "threshold_alert_creation": "passed",
+      "full_json_backup_verify": "passed"
+    },
+    "v1_0_database_upgrade": "passed",
+    "streamlit_ui_runtime": "not_executed_in_build_container_missing_streamlit_and_no_network"
+  },
+  "note": "Streamlit and streamlit-folium are declared in requirements.txt and installed by 01_install_local_env.bat / Dockerfile."
+}

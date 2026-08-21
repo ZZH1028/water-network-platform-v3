@@ -1,0 +1,7 @@
+{
+  "compile_ok": true,
+  "pytest_returncode": 0,
+  "pytest_stdout": ".                                                                        [100%]\n1 passed in 0.71s\n",
+  "pytest_stderr": "",
+  "project_files": 76
+}

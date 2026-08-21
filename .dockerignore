@@ -1,0 +1,10 @@
+.venv
+__pycache__
+*.pyc
+.git
+.vscode
+backups/*
+logs/*
+reports/*
+storage/uploads/*
+database/*.db

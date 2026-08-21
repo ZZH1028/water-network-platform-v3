@@ -1,0 +1,31 @@
+{
+  "version": "V3.0 公网展示版",
+  "validated_at": "2026-08-17",
+  "python_compile": "passed",
+  "pytest": "39 passed (clean test databases)",
+  "gis": {
+    "stations": 194,
+    "facilities": 32,
+    "rivers": 110,
+    "sections": 305,
+    "section_points": 19317
+  },
+  "public_pages": [
+    "官网首页",
+    "数据概览",
+    "GIS全景",
+    "数字孪生",
+    "智能能力",
+    "技术架构",
+    "关于平台",
+    "登录平台"
+  ],
+  "deployment_files": [
+    "06_public_preview_tunnel.bat",
+    "docker-compose.public.yml",
+    ".env.public.example",
+    "07_run_public_server_docker.bat",
+    "08_stop_public_server_docker.bat"
+  ],
+  "note": "当前构建容器未安装 Streamlit，因此未进行浏览器级 UI 运行测试；已完成 Python AST/compile、39 项业务回归测试和 GIS/三维数据完整性验证。"
+}

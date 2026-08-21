@@ -1,0 +1,10 @@
+{
+  "station_id": "3",
+  "current_level": 1.418,
+  "rainfall": 22.3,
+  "tide_level": 3.56,
+  "gate_factor": 0.78,
+  "pump_factor": 0.92,
+  "hours": 24,
+  "created_by": "新吴水利调度员"
+}

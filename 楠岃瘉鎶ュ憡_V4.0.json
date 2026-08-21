@@ -1,0 +1,18 @@
+{
+  "version": "V4.0 水利指挥大屏版",
+  "generated_at": "2026-08-18",
+  "changes": [
+    "新增 ui/command_center_home.py 指挥大屏首页",
+    "首页中央接入真实深色GIS河网地图",
+    "首页左右加入实时水情、预警和模型任务信息",
+    "新增8个可点击快捷入口",
+    "新增登录后自动跳转目标后台功能",
+    "优化后台侧栏深色导航和移动端宽度",
+    "默认版本号升级为V4.0"
+  ],
+  "verification": {
+    "python_compile": "passed",
+    "pytest": "39 passed"
+  },
+  "notes": "Streamlit运行级验证未在当前容器执行，因为当前容器未安装streamlit；项目原有39项测试全部通过。"
+}
