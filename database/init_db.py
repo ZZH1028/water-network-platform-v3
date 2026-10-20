@@ -1,10 +1,37 @@
 from __future__ import annotations
 
 from sqlalchemy import inspect, select, text
+import os
 
 from database.engine import Base, engine, session_scope
 from database.models import ModelRegistry, User
-from services.auth_service import hash_password
+from services.auth_service import hash_password, validate_password_strength, verify_password
+from core.config import PUBLIC_DEPLOYMENT
+
+
+def _initialize_users(session) -> None:
+    if PUBLIC_DEPLOYMENT:
+        password = os.getenv("PUBLIC_ADMIN_PASSWORD", "")
+        if not password:
+            return
+        username = os.getenv("PUBLIC_ADMIN_USERNAME", "admin").strip()
+        valid, _ = validate_password_strength(password)
+        if not username or not valid:
+            raise ValueError("公网管理员配置无效：账号不能为空，密码至少12位并包含字母和数字")
+        user = session.scalar(select(User).where(User.username == username))
+        if user is None:
+            session.add(User(username=username, password_hash=hash_password(password), role="管理员", enabled=True))
+        elif user.role == "管理员" and verify_password("admin123", user.password_hash):
+            user.password_hash = hash_password(password)
+            user.enabled = True
+        return
+    if session.scalar(select(User).where(User.username == "admin")) is None:
+        session.add_all([
+            User(username="admin", password_hash=hash_password("admin123"), role="管理员"),
+            User(username="researcher", password_hash=hash_password("demo123"), role="科研人员"),
+            User(username="dispatcher", password_hash=hash_password("demo123"), role="调度人员"),
+            User(username="viewer", password_hash=hash_password("demo123"), role="查看用户"),
+        ])
 
 
 def _migrate_schema() -> None:
@@ -40,13 +67,7 @@ def initialize_database(seed_demo: bool = False) -> None:
     Base.metadata.create_all(bind=engine)
     _migrate_schema()
     with session_scope() as session:
-        if session.scalar(select(User).where(User.username == "admin")) is None:
-            session.add_all([
-                User(username="admin", password_hash=hash_password("admin123"), role="管理员"),
-                User(username="researcher", password_hash=hash_password("demo123"), role="科研人员"),
-                User(username="dispatcher", password_hash=hash_password("demo123"), role="调度人员"),
-                User(username="viewer", password_hash=hash_password("demo123"), role="查看用户"),
-            ])
+        _initialize_users(session)
 
         registry = [
             ("模拟水位预测模型", "演示模型", "V1.1", "已启用", "predict()", "演示河网", "用于验证平台流程"),

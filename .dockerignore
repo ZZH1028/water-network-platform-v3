@@ -7,4 +7,12 @@ backups/*
 logs/*
 reports/*
 storage/uploads/*
-database/*.db
+database/*.db*
+storage/knowledge/*
+storage/exports/*
+tests/*.db*
+static/cesium/
+.env
+.env.*
+!.env*.example
+.streamlit/secrets.toml

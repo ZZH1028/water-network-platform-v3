@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/app/static/cesium/Build/Cesium/Widgets/widgets.css">
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07151f;color:#e4f1f5;font:13px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}
+#scene{position:absolute;inset:0;border:1px solid #29424e;border-radius:14px;overflow:hidden}
+.scene-hud{position:absolute;z-index:3;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;gap:12px;pointer-events:none}
+.scene-title{padding:12px 15px;border:1px solid #38515d;border-radius:11px;background:rgba(8,23,34,.91);backdrop-filter:blur(14px)}
+.scene-title small{font:10px/1.4 monospace;letter-spacing:2px;color:#6fcdbb}.scene-title strong{display:block;font-weight:600;font-size:15px;margin:4px 0}.scene-title span{font-size:11px;color:#9db2bf}
+.scene-badges{display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:54%}.badge{padding:6px 9px;border:1px solid #3a5663;border-radius:7px;color:#b5c9d2;background:rgba(8,23,34,.93);font-size:11px}.badge.ok{color:#77e4c1;border-color:#245d53}.badge.warn{color:#f1c77d;border-color:#725f35}.badge.error{color:#ffb1a6;border-color:#8b4943}
+.scene-tools{position:absolute;z-index:4;left:16px;bottom:48px;display:flex;gap:7px;flex-wrap:wrap;max-width:calc(100% - 32px);padding:9px;background:rgba(8,23,34,.94);border:1px solid #344c59;border-radius:11px;backdrop-filter:blur(12px)}
+button,.layer-label{font-family:inherit;font-size:12px;line-height:1.3;color:#cadde5;background:#16313f;border:1px solid #385465;border-radius:6px;padding:7px 10px;cursor:pointer}button:hover{background:#205164;border-color:#5d9b9a}button:focus-visible,input:focus-visible{outline:2px solid #75dbc7;outline-offset:3px}.layer-label{display:flex;gap:5px;align-items:center;background:transparent;padding:6px}.layer-label input{accent-color:#65d5b4;margin:0}
+.scene-legend{position:absolute;z-index:3;right:16px;bottom:105px;padding:10px 12px;border:1px solid #38515d;border-radius:9px;background:rgba(8,23,34,.92);display:grid;gap:6px;font-size:11px;color:#b8cdd6}.scene-legend span{display:flex;align-items:center;gap:7px}.dot{height:8px;width:8px;border-radius:50%;display:inline-block}.sq{border-radius:2px}
+#notice{position:absolute;z-index:5;left:16px;right:16px;bottom:151px;max-width:700px;color:#f6d5a2;font-size:12px;padding:10px 12px;border:1px solid #7c6137;border-radius:8px;background:rgba(39,29,16,.95);display:none}
+#loading{position:absolute;z-index:2;inset:0;display:flex;align-items:center;justify-content:center;color:#94b9c6;background:radial-gradient(circle at 50% 50%,#16303d,#07151f);pointer-events:none;text-align:center;padding:30px}.source-line{position:absolute;left:16px;right:120px;bottom:12px;z-index:3;color:#c7d7dd;font-size:10px;text-shadow:0 1px 3px #000;background:rgba(8,23,34,.65);padding:4px 8px;border-radius:4px;pointer-events:none}
+.cesium-viewer-bottom{max-width:100%;font-size:9px}.cesium-widget-credits{font-size:9px!important}.cesium-viewer-toolbar{top:93px!important;right:16px!important}.cesium-infoBox{top:120px!important;max-width:330px}.cesium-infoBox-title{background:#143344}.cesium-viewer-fullscreenContainer{bottom:2px}
+@media(max-width:650px){.scene-hud{top:10px;left:10px;right:10px;flex-direction:column;gap:7px}.scene-title{padding:9px 11px}.scene-badges{max-width:100%;justify-content:flex-start}.badge{font-size:10px;padding:4px 7px}.scene-tools{left:10px;bottom:47px;gap:4px;padding:6px}.scene-tools button,.layer-label{font-size:11px;padding:5px 7px}.scene-legend{display:none}.source-line{left:10px;right:30px;font-size:9px}.cesium-viewer-toolbar{top:145px!important}#notice{left:10px;right:10px;bottom:160px;font-size:11px}}
+</style></head><body>
+<div id="scene" aria-label="三维实景河网地球场景"></div>
+<div id="loading" role="status">正在初始化三维引擎…<br>真实影像与地形需要外部服务连接</div>
+<div class="scene-hud"><div class="scene-title"><small>RIVER NETWORK · 3D SITUATION</small><strong>新吴河网 · 实景空间</strong><span>卫星影像 / 地形 / 工程要素</span></div><div class="scene-badges"><span id="imagery-state" class="badge">影像 · 加载中</span><span id="terrain-state" class="badge">地形 · 加载中</span><span id="tiles-state" class="badge warn">倾斜摄影 · 未接入</span></div></div>
+<div id="notice" role="alert"></div>
+<div class="scene-legend"><span><i class="dot" style="background:#64d3c0"></i>有业务水情</span><span><i class="dot" style="background:#ff8f75"></i>达到警戒水位</span><span><i class="dot" style="background:#9bafbd"></i>暂无业务水情</span><span><i class="dot sq" style="background:#e9bf76"></i>参考位置 / 业务闸门</span><span><i class="dot" style="background:#d2a8f0"></i>业务泵站</span><span><i class="dot" style="background:#51bbef"></i>河道中心线</span></div>
+<div class="scene-tools" role="toolbar" aria-label="三维场景工具"><button id="reset">全域复位</button><button id="overhead">垂直俯瞰</button><button id="orbit" aria-pressed="false">环绕漫游</button><button id="model-focus" hidden>定位实景模型</button><label class="layer-label"><input type="checkbox" id="stations-toggle" checked>监测站</label><label class="layer-label"><input type="checkbox" id="facilities-toggle" checked>闸泵</label><label class="layer-label"><input type="checkbox" id="rivers-toggle" checked>河网</label><label class="layer-label"><input type="checkbox" id="labels-toggle">名称</label></div>
+<div class="source-line">Esri 真实影像与在线地形 · 河网为地表中心线 · 建筑级实景需接入倾斜摄影 3D Tiles</div>
+<script>
+const INITIAL_DATA = null;
+let DATA=null;
+let rendererApi=null;
+let engineRequested=false;
+let payloadFingerprint='';
+const $=id=>document.getElementById(id);
+const escapeHTML=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const notices=new Map();
+function notice(key,message){notices.set(key,message);$('notice').textContent=[...notices.values()].join(' · ');$('notice').style.display='block';}
+function clearNotice(key){notices.delete(key);$('notice').textContent=[...notices.values()].join(' · ');$('notice').style.display=notices.size?'block':'none';}
+function state(id,text,kind=''){const element=$(id);element.textContent=text;element.className='badge '+kind;}
+function timeout(promise,label,ms=22000){return Promise.race([promise,new Promise((_,reject)=>setTimeout(()=>reject(new Error(label+' timeout')),ms))]);}
+let booted=false;
+setTimeout(()=>{if(!booted){$('loading').textContent='三维引擎未能加载，请检查同源静态资源与浏览器 WebGL 支持。';notice('engine','三维资源加载超时。场景尚未可用。');}},18000);
+function fatal(message){$('loading').textContent=message;state('imagery-state','影像 · 未加载','error');state('terrain-state','地形 · 未加载','error');notice('engine',message);}
+function loadEngine(){
+ try{
+  let origin='';try{origin=window.parent.location.origin;}catch(e){}
+  if(!origin||origin==='null'){origin=new URL(document.referrer||document.baseURI).origin;}
+  if(!/^https?:\/\//.test(origin))throw new Error('No HTTP origin');
+  window.CESIUM_BASE_URL=new URL('/app/static/cesium/Build/Cesium/',origin).href;
+  const script=document.createElement('script');script.src=window.CESIUM_BASE_URL+'Cesium.js';
+  script.onload=()=>{booted=true;clearNotice('engine');initialize().catch(()=>fatal('三维场景初始化失败，请检查浏览器 WebGL 与资源连接。'));};
+  script.onerror=()=>{booted=true;fatal('Cesium 三维资源不可达，请确认静态资源已安装并启用服务。');};
+  document.head.appendChild(script);
+ }catch(error){booted=true;fatal('无法确定三维资源的同源地址，三维场景未加载。');}
+}
+async function initialize(){
+ const C=window.Cesium;
+ if(!C)throw new Error('Cesium unavailable');
+ const viewer=new C.Viewer('scene',{baseLayer:false,baseLayerPicker:false,geocoder:false,homeButton:false,sceneModePicker:false,scene3DOnly:true,animation:false,timeline:false,navigationHelpButton:false,terrainProvider:new C.EllipsoidTerrainProvider(),requestRenderMode:true,maximumRenderTimeChange:Infinity,infoBox:true,selectionIndicator:true,fullscreenButton:true});
+ viewer.scene.globe.baseColor=C.Color.fromCssColorString('#12313e');
+ viewer.scene.backgroundColor=C.Color.fromCssColorString('#07151f');
+ viewer.scene.globe.depthTestAgainstTerrain=true;
+ viewer.scene.screenSpaceCameraController.minimumZoomDistance=45;
+ viewer.scene.screenSpaceCameraController.maximumZoomDistance=3000000;
+ viewer.scene.renderError.addEventListener(()=>notice('render','浏览器三维渲染发生错误。可尝试全域复位或更换支持 WebGL 的浏览器。'));
+ $('loading').style.display='none';
+ // A local flat-colour reference surface keeps the globe and ground-clamped
+ // engineering geometry visible when every external imagery request fails.
+ // It deliberately contains no invented satellite imagery or terrain detail.
+ const referenceCanvas=document.createElement('canvas');referenceCanvas.width=2;referenceCanvas.height=2;
+ const referenceContext=referenceCanvas.getContext('2d');referenceContext.fillStyle='#143640';referenceContext.fillRect(0,0,2,2);
+ const referenceProvider=await C.SingleTileImageryProvider.fromUrl(referenceCanvas.toDataURL('image/png'));
+ viewer.imageryLayers.addImageryProvider(referenceProvider);
+ let imageryErrored=false;
+ async function loadImagery(){try{
+   const imagery=await timeout(C.ArcGisMapServerImageryProvider.fromUrl(DATA.imagery_url),'imagery');
+   imagery.errorEvent.addEventListener(()=>{imageryErrored=true;state('imagery-state','影像 · 瓦片不可达','error');notice('imagery','真实影像瓦片加载失败：请检查地图服务网络与授权。当前底色不是实景影像。');});
+   const layer=viewer.imageryLayers.addImageryProvider(imagery);
+   state('imagery-state','影像 · 瓦片加载中');
+   let confirmed=false;
+   viewer.scene.globe.tileLoadProgressEvent.addEventListener(pending=>{if(!confirmed&&!imageryErrored&&pending===0&&layer.ready){confirmed=true;state('imagery-state','影像 · 已加载','ok');clearNotice('imagery-wait');}});
+   setTimeout(()=>{if(!confirmed&&!imageryErrored){state('imagery-state','影像 · 等待瓦片','warn');notice('imagery-wait','影像仍在等待瓦片，尚未确认实景影像加载完成。');}},18000);
+ }catch(error){imageryErrored=true;state('imagery-state','影像 · 连接失败','error');notice('imagery','真实卫星影像服务无法连接；当前只显示工程图层与地球底色。');}}
+ async function loadTerrain(){try{
+   const terrain=await timeout(C.ArcGISTiledElevationTerrainProvider.fromUrl(DATA.terrain_url),'terrain');
+   let terrainFailed=false;
+   terrain.errorEvent.addEventListener(()=>{if(terrainFailed)return;terrainFailed=true;viewer.terrainProvider=new C.EllipsoidTerrainProvider();state('terrain-state','地形 · 椭球回退','warn');notice('terrain','在线地形瓦片加载失败，已回退至椭球表面，当前没有真实地形起伏。');});
+   viewer.terrainProvider=terrain;
+   state('terrain-state','地形 · 服务已接入','ok');
+ }catch(error){state('terrain-state','地形 · 椭球回退','warn');notice('terrain','在线地形不可用，已回退至椭球表面，当前没有真实地形起伏。');}}
+ // Service metadata and raster requests must not block local engineering layers.
+ loadImagery();loadTerrain();
+ const stationLayer=new C.CustomDataSource('监测站'),facilityLayer=new C.CustomDataSource('闸泵'),riverLayer=new C.CustomDataSource('河网');
+ await Promise.all([viewer.dataSources.add(stationLayer),viewer.dataSources.add(facilityLayer),viewer.dataSources.add(riverLayer)]);
+ function description(entries){return '<table style="width:100%;font-size:13px">'+entries.map(([k,v])=>'<tr><th style="text-align:left;padding:5px;color:#9bb9c5">'+escapeHTML(k)+'</th><td style="padding:5px">'+escapeHTML(v)+'</td></tr>').join('')+'</table>';}
+ const label=text=>({text,font:'12px sans-serif',fillColor:C.Color.WHITE,outlineColor:C.Color.BLACK,outlineWidth:3,style:C.LabelStyle.FILL_AND_OUTLINE,pixelOffset:new C.Cartesian2(0,-19),heightReference:C.HeightReference.CLAMP_TO_GROUND,disableDepthTestDistance:Infinity,show:false,distanceDisplayCondition:new C.DistanceDisplayCondition(0,24000)});
+ function drawLayers(data){
+   stationLayer.entities.removeAll();facilityLayer.entities.removeAll();riverLayer.entities.removeAll();
+ data.stations.forEach(station=>{
+   const color=station.status==='warning'?'#ff8f75':station.status==='measured'?'#64d3c0':'#9bafbd';
+   stationLayer.entities.add({id:'station-'+station.id,name:station.name,position:C.Cartesian3.fromDegrees(station.lng,station.lat),point:{pixelSize:station.status==='warning'?11:7,color:C.Color.fromCssColorString(color),outlineColor:C.Color.fromCssColorString('#122b37'),outlineWidth:2,heightReference:C.HeightReference.CLAMP_TO_GROUND,disableDepthTestDistance:Infinity},label:label(station.name),description:description([['站点编号',station.id],['水位',station.water_level===null?'暂无业务水情':station.water_level+' m'],['警戒水位',station.warning_level===null?'未配置':station.warning_level+' m'],['记录时间',station.monitor_time],['坐标','WGS84 · '+station.lng.toFixed(6)+', '+station.lat.toFixed(6)],['来源',station.source]])});
+ });
+ data.facilities.forEach(facility=>facilityLayer.entities.add({id:'facility-'+facility.id,name:facility.name,position:C.Cartesian3.fromDegrees(facility.lng,facility.lat),point:{pixelSize:facility.kind==='reference'?10:12,color:C.Color.fromCssColorString(facility.kind==='pump'?'#d2a8f0':'#e9bf76'),outlineColor:C.Color.fromCssColorString('#342d22'),outlineWidth:2,heightReference:C.HeightReference.CLAMP_TO_GROUND,disableDepthTestDistance:Infinity},label:label(facility.name),description:description([['设施编号',facility.display_id],['类型',facility.kind==='gate'?'业务闸门':facility.kind==='pump'?'业务泵站':'实测参考位置'],['业务状态',facility.status],['闸门开度',facility.current_opening===null?'未提供':facility.current_opening+' %'],['泵站流量',facility.current_flow===null?'未提供':facility.current_flow+' m³/s'],['泵站运行记录',facility.running===null?'未提供':facility.running?'运行':'停止'],['记录更新时间',facility.updated_at],['来源',facility.source],['环境说明',facility.environment]])}));
+ data.rivers.forEach(river=>riverLayer.entities.add({id:'river-'+river.id,name:river.name,polyline:{positions:C.Cartesian3.fromDegreesArray(river.coordinates.flat()),width:4,clampToGround:true,material:new C.PolylineGlowMaterialProperty({glowPower:0.14,color:C.Color.fromCssColorString('#51bbef')})},description:description([['河道',river.name],['断面数量',river.section_count??'—'],['图层类型','地表河道中心线，不是河床三维测绘'],['坐标来源',river.source]])}));
+ }
+ drawLayers(DATA);
+ if(DATA.config_error){state('tiles-state','倾斜摄影 · 配置无效','error');notice('tiles-config',DATA.config_error);}
+ async function loadTileset(){if(DATA.tileset_url){
+   state('tiles-state','倾斜摄影 · 加载中');
+   try{
+     const tiles=await timeout(C.Cesium3DTileset.fromUrl(DATA.tileset_url,{maximumScreenSpaceError:20}),'tileset',30000);
+     viewer.scene.primitives.add(tiles);
+     let tileFailed=false,tilesConfirmed=false;
+     tiles.tileFailed.addEventListener(()=>{tileFailed=true;state('tiles-state','倾斜摄影 · 瓦片失败','error');notice('tiles','倾斜摄影瓦片无法加载，请检查服务授权、跨域设置与网络。');});
+     tiles.initialTilesLoaded.addEventListener(()=>{tilesConfirmed=true;if(!tileFailed)state('tiles-state','倾斜摄影 · 已加载','ok');});
+     state('tiles-state','倾斜摄影 · 等待瓦片','warn');
+     $('model-focus').hidden=false;$('model-focus').onclick=()=>{stopOrbit();viewer.zoomTo(tiles);};
+     setTimeout(()=>{if(!tilesConfirmed&&!tileFailed)state('tiles-state','倾斜摄影 · 未确认可见','warn');},25000);
+   }catch(error){state('tiles-state','倾斜摄影 · 连接失败','error');notice('tiles','3D Tiles 服务无法连接。当前没有建筑级倾斜摄影实景。');}
+ }}
+ loadTileset();
+ let orbiting=false,heading=0;
+ let center=C.Cartesian3.fromDegrees(...(DATA.focus||DATA.center));
+ let initialRange=DATA.focus?2600:26000;
+ function stopOrbit(){orbiting=false;$('orbit').textContent='环绕漫游';$('orbit').setAttribute('aria-pressed','false');viewer.camera.lookAtTransform(C.Matrix4.IDENTITY);}
+ function reset(pitch=-46,animate=true){
+   stopOrbit();
+   const offset=new C.HeadingPitchRange(C.Math.toRadians(12),C.Math.toRadians(pitch),initialRange);
+   if(animate){viewer.camera.flyToBoundingSphere(new C.BoundingSphere(center,initialRange*.1),{offset,duration:1.0});}
+   else{viewer.camera.lookAt(center,offset);viewer.camera.lookAtTransform(C.Matrix4.IDENTITY);}
+   viewer.scene.requestRender();
+ }
+ $('reset').onclick=()=>{center=C.Cartesian3.fromDegrees(...DATA.center);initialRange=26000;reset();};$('overhead').onclick=()=>reset(-90);
+ $('orbit').onclick=()=>{if(orbiting){stopOrbit();return;}orbiting=true;heading=viewer.camera.heading;$('orbit').textContent='暂停漫游';$('orbit').setAttribute('aria-pressed','true');};
+ let last=performance.now();viewer.clock.onTick.addEventListener(()=>{const now=performance.now();const delta=Math.min((now-last)/1000,.2);last=now;if(orbiting){heading+=delta*.07;viewer.camera.lookAt(center,new C.HeadingPitchRange(heading,C.Math.toRadians(-38),initialRange));viewer.scene.requestRender();}});
+ ['stations','facilities','rivers'].forEach((name,index)=>$(name+'-toggle').onchange=e=>{[stationLayer,facilityLayer,riverLayer][index].show=e.target.checked;viewer.scene.requestRender();});
+ $('labels-toggle').onchange=e=>{[stationLayer,facilityLayer].forEach(layer=>layer.entities.values.forEach(entity=>entity.label.show=e.target.checked));viewer.scene.requestRender();};
+ viewer.screenSpaceEventHandler.setInputAction(()=>{if(orbiting)stopOrbit();},C.ScreenSpaceEventType.LEFT_DOWN);
+ // Position the first frame synchronously around the river-network target.
+ // A point directly over the target with a tilted orientation looks elsewhere.
+ reset(-46,false);viewer.scene.requestRender();
+ rendererApi={update:next=>{
+   const nextCenter=C.Cartesian3.fromDegrees(...(next.focus||next.center));
+   const focused=!C.Cartesian3.equalsEpsilon(center,nextCenter,0,0.01);
+   drawLayers(next);center=nextCenter;initialRange=next.focus?2600:26000;
+   [stationLayer,facilityLayer].forEach(layer=>layer.entities.values.forEach(entity=>entity.label.show=$('labels-toggle').checked));
+   if(focused)reset(-46,false);
+   viewer.scene.requestRender();
+ }};
+}
+function setHeight(height){window.parent.postMessage({isStreamlitMessage:true,type:'streamlit:setFrameHeight',height:Math.max(340,Math.min(Number(height)||620,1200))},'*');}
+function acceptPayload(payload,height){
+ if(!payload||!Array.isArray(payload.stations)||!Array.isArray(payload.facilities)||!Array.isArray(payload.rivers))return;
+ const fingerprint=JSON.stringify(payload);
+ DATA=payload;
+ setHeight(height);
+ if(fingerprint===payloadFingerprint)return;
+ payloadFingerprint=fingerprint;
+ if(rendererApi){rendererApi.update(DATA);return;}
+ if(!engineRequested){engineRequested=true;loadEngine();}
+}
+window.addEventListener('message',event=>{
+ if(event.source!==window.parent||event.data?.type!=='streamlit:render')return;
+ const args=event.data.args||{};
+ acceptPayload(args.payload,args.height);
+});
+if(INITIAL_DATA){acceptPayload(INITIAL_DATA,620);}
+else{window.parent.postMessage({isStreamlitMessage:true,type:'streamlit:componentReady',apiVersion:1},'*');}
+</script></body></html>

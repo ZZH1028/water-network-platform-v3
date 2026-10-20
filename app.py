@@ -1,21 +1,16 @@
 from __future__ import annotations
 
-from datetime import datetime
 from pathlib import Path
-import json
 
-import folium
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 from PIL import Image
-from streamlit_folium import st_folium
 
-from core.config import APP_NAME, APP_VERSION, DEMO_MODE, SEED_DEMO_DATA, BASE_DIR, BACKUP_DIR
+from core.config import APP_NAME, APP_VERSION, DEMO_MODE, SEED_DEMO_DATA, BASE_DIR, BACKUP_DIR, PUBLIC_DEPLOYMENT
 from database.init_db import initialize_database
 from database.engine import session_scope
-from database.models import Gate, PumpStation, ModelRegistry, User, UploadedFile
+from database.models import ModelRegistry, UploadedFile
 from sqlalchemy import select
 from services.auth_service import authenticate, create_or_update_user, set_user_enabled, update_user_role, change_password, list_users
 from services.log_service import add_log, query_logs
@@ -27,7 +22,7 @@ from services.alert_service import refresh_threshold_alerts, query_alerts, updat
 from services.prediction_service import run_demo_prediction, get_latest_prediction, list_prediction_tasks
 from services.scheduling_service import generate_demo_plans, get_latest_plans, select_plan
 from services.template_service import TEMPLATES, dataframe_to_excel_bytes
-from services.gis_service import load_gis_stations, load_gate_pump_points, get_gis_summary
+from services.gis_service import load_gis_stations
 from services.backup_service import create_json_backup_extended, verify_backup, restore_from_json
 from ui.theme import inject_research_theme, login_brand_panel, sidebar_brand, page_header, research_banner, metric_card, section_label, research_footer, style_plotly_figure
 from ui.public_site import (
@@ -35,9 +30,12 @@ from ui.public_site import (
     render_digital_twin, render_capabilities, render_architecture, render_about, public_footer,
 )
 from ui.command_center_home import render_command_center_home
+from ui.scene3d import render_scene3d
+from ui.assistant import render_assistant
+from ui.charts3d import time_series_figure, prediction_figure, comparison_figure
 
 LOGO = Image.open(BASE_DIR/'assets'/'hhu_logo.png')
-st.set_page_config(page_title=APP_NAME,page_icon=LOGO,layout='wide',initial_sidebar_state='expanded')
+st.set_page_config(page_title=APP_NAME,page_icon=LOGO,layout='wide',initial_sidebar_state='auto')
 initialize_database(seed_demo=SEED_DEMO_DATA)
 inject_research_theme()
 inject_public_site_theme()
@@ -49,10 +47,10 @@ ROLE_PERMISSIONS={
  '查看用户':set(),
 }
 ROLE_PAGES={
- '管理员':['平台首页','河网GIS地图','数据中心','监测图表','水动力预测','智能调度','方案比较','预警中心','模型管理','系统管理'],
- '科研人员':['平台首页','河网GIS地图','数据中心','监测图表','水动力预测','智能调度','方案比较','模型管理'],
- '调度人员':['平台首页','河网GIS地图','监测图表','水动力预测','智能调度','方案比较','预警中心'],
- '查看用户':['平台首页','河网GIS地图','监测图表','方案比较','预警中心'],
+ '管理员':['平台首页','水知AI助手','三维河网','数据中心','运行监测','水动力预测','智能调度','方案比较','预警中心','模型管理','系统管理'],
+ '科研人员':['平台首页','水知AI助手','三维河网','数据中心','运行监测','水动力预测','智能调度','方案比较','模型管理'],
+ '调度人员':['平台首页','水知AI助手','三维河网','运行监测','水动力预测','智能调度','方案比较','预警中心'],
+ '查看用户':['平台首页','水知AI助手','三维河网','运行监测','方案比较','预警中心'],
 }
 
 def user(): return st.session_state.get('user',{})
@@ -68,11 +66,14 @@ def login():
         users = list_users()
         st.markdown('### 登录正式平台'); st.caption(APP_VERSION)
         if not users:
+            if PUBLIC_DEPLOYMENT:
+                st.info('管理入口暂未开放。你仍可使用公开三维场景与水知助手。')
+                return False
             st.warning('数据库中没有用户，请先创建管理员账号。')
             with st.form('create_admin'):
                 au=st.text_input('管理员账号')
                 ap=st.text_input('管理员密码',type='password')
-                if st.form_submit_button('创建并登录',type='primary',use_container_width=True):
+                if st.form_submit_button('创建并登录',type='primary',width='stretch'):
                     ok, msg = create_or_update_user(au, ap, '管理员')
                     if ok:
                         result=authenticate(au, ap)
@@ -86,8 +87,8 @@ def login():
                     else: st.error(msg)
         else:
             with st.form('login'):
-                u=st.text_input('账号'); p=st.text_input('密码',type='password'); ok=st.form_submit_button('进入平台',use_container_width=True,type='primary')
-            if SEED_DEMO_DATA:
+                u=st.text_input('账号'); p=st.text_input('密码',type='password'); ok=st.form_submit_button('进入平台',width='stretch',type='primary')
+            if SEED_DEMO_DATA and not PUBLIC_DEPLOYMENT:
                 st.info('演示模式默认账号：admin，默认密码：admin123。登录成功后请及时修改密码。')
             if ok:
                 result=authenticate(u.strip(),p)
@@ -105,165 +106,50 @@ def banner():
     research_banner(('演示环境' if DEMO_MODE else '正式数据环境')+'。已整合多人权限、质量校验、备份恢复、实测GIS参考数据、GIS联动预测与约束调度；当前水动力计算核心仍为可替换的演示模型。')
 
 
-def build_map(latest, include_reference: bool = False):
-    """GIS map with a full 110-river structural layer and command-center styling."""
-    center = [31.515, 120.425]
-    m = folium.Map(location=center, zoom_start=11, tiles=None, control_scale=True, prefer_canvas=True)
-    folium.TileLayer(
-        tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        attr='Esri World Imagery', name='卫星影像', overlay=False, control=True, show=True, max_zoom=19,
-    ).add_to(m)
-    folium.TileLayer('CartoDB dark_matter', name='深色底图', overlay=False, control=True, show=False).add_to(m)
-
-    full_geo = BASE_DIR/'data'/'gis'/'river_network_full.geojson'
-    fallback_geo = BASE_DIR/'data'/'gis'/'river_network.geojson'
-    geo = full_geo if full_geo.exists() else fallback_geo
-    river_obj = None
-    if geo.exists():
-        river_obj = json.loads(geo.read_text(encoding='utf-8'))
-        folium.GeoJson(
-            river_obj,
-            name='完整河网结构' if geo == full_geo else '河网结构',
-            style_function=lambda f: {
-                'color': '#14d8ff' if int(f.get('properties',{}).get('section_count',2) or 2) < 5 else '#55f1ff',
-                'weight': 2.6 if int(f.get('properties',{}).get('section_count',2) or 2) < 5 else 4.4,
-                'opacity': .84 if int(f.get('properties',{}).get('section_count',2) or 2) < 5 else .98,
-            },
-            highlight_function=lambda _: {'color':'#ffad43','weight':6,'opacity':1},
-            tooltip=folium.GeoJsonTooltip(
-                fields=['name','section_count'], aliases=['河道名称','断面数'], sticky=False,
-                style=('background:rgba(5,18,27,.94);color:#f2fbff;border:1px solid #23c8ef;'
-                       'border-radius:8px;padding:6px 8px;font-size:13px;')
-            ) if geo == full_geo else folium.GeoJsonTooltip(fields=['name'],aliases=['河道名称']),
-        ).add_to(m)
-
-        if geo == full_geo:
-            features = river_obj.get('features', [])
-            # Always-visible labels for the principal waterways, so the river structure is readable at a glance.
-            for feature in sorted(features, key=lambda f: int(f.get('properties',{}).get('section_count',0)), reverse=True)[:18]:
-                coords = feature.get('geometry',{}).get('coordinates',[])
-                if not coords:
-                    continue
-                lon, lat = coords[len(coords)//2]
-                name = str(feature.get('properties',{}).get('name',''))
-                folium.Marker(
-                    [lat, lon],
-                    icon=folium.DivIcon(
-                        icon_size=(92,22), icon_anchor=(46,11),
-                        html=f'<div style="white-space:nowrap;text-align:center;color:#e9fdff;font-size:11px;font-weight:700;text-shadow:0 1px 4px #000,0 0 6px #005d73;background:rgba(1,20,27,.38);padding:2px 5px;border-radius:5px;border:1px solid rgba(46,210,241,.18)">{name}</div>'
-                    ),
-                    tooltip=name,
-                ).add_to(m)
-            all_coords = [c for f in features for c in f.get('geometry',{}).get('coordinates',[]) if isinstance(c,list) and len(c)>=2]
-            if all_coords:
-                lons=[c[0] for c in all_coords]; lats=[c[1] for c in all_coords]
-                m.fit_bounds([[min(lats),min(lons)],[max(lats),max(lons)]], padding=(12,12))
-
-    db_group = folium.FeatureGroup(name='数据库监测站', show=True)
-    for r in latest.itertuples(index=False):
-        if pd.isna(r.longitude) or pd.isna(r.latitude):
-            continue
-        warning = pd.notna(r.water_level) and pd.notna(r.warning_level) and float(r.water_level) >= float(r.warning_level)
-        color = '#ff9f32' if warning else ('#21dbff' if r.station_type == '水位站' else '#2ce2a3')
-        level = '暂无水位' if pd.isna(r.water_level) else f'{float(r.water_level):.2f} m'
-        folium.CircleMarker(
-            [r.latitude,r.longitude], radius=7, color='#dffaff', weight=1.5, fill=True,
-            fill_color=color, fill_opacity=.96, tooltip=f'{r.station_id} {r.station_name}',
-            popup=f'<div style="font-size:13px"><b>{r.station_name}</b><br>最新水位：{level}<br>时间：{r.monitor_time or "—"}</div>'
-        ).add_to(db_group)
-    db_group.add_to(m)
-
-    with session_scope() as sess:
-        gates = sess.scalars(select(Gate)).all()
-        pumps = sess.scalars(select(PumpStation)).all()
-    facility_group = folium.FeatureGroup(name='数据库闸泵', show=True)
-    for r in gates:
-        folium.CircleMarker([r.latitude,r.longitude], radius=6, color='#ffe3a9', weight=1.5, fill=True, fill_color='#ff9f32', fill_opacity=.95, tooltip=r.gate_name, popup=f'{r.gate_name}<br>开度：{r.current_opening}%').add_to(facility_group)
-    for r in pumps:
-        folium.CircleMarker([r.latitude,r.longitude], radius=6, color='#d7e3ff', weight=1.5, fill=True, fill_color='#6d7cff', fill_opacity=.95, tooltip=r.pump_name, popup=f'{r.pump_name}<br>流量：{r.current_flow} m³/s').add_to(facility_group)
-    facility_group.add_to(m)
-
-    if include_reference:
-        existing_ids = set(latest['station_id'].astype(str)) if not latest.empty and 'station_id' in latest.columns else set()
-        station_group = folium.FeatureGroup(name='实测监测站', show=True)
-        for item in load_gis_stations():
-            if item['station_id'] in existing_ids:
-                continue
-            folium.CircleMarker(
-                [item['lat'], item['lng']], radius=4.5, color='#b8f8ff', weight=1,
-                fill=True, fill_color='#17cde8', fill_opacity=.90,
-                tooltip=f"{item['station_id']} {item['station_name']}",
-                popup=f"<b>{item['station_name']}</b><br>站号：{item['station_id']}<br>坐标系：WGS84"
-            ).add_to(station_group)
-        station_group.add_to(m)
-
-        ref_facility_group = folium.FeatureGroup(name='实测闸泵设施', show=True)
-        for item in load_gate_pump_points():
-            folium.CircleMarker(
-                [item['lat'], item['lng']], radius=5.5, color='#ffe6ad', weight=1,
-                fill=True, fill_color='#ff9b2f', fill_opacity=.96, tooltip=item['facility_name'],
-                popup=f"{item['facility_name']}<br>编号：{item['facility_id']}<br>数据源：gate_pump.txt"
-            ).add_to(ref_facility_group)
-        ref_facility_group.add_to(m)
-
-    folium.LayerControl(collapsed=True, position='topright').add_to(m)
-    return m
-
-
 def dashboard():
-    page_header('平台首页','多人协作环境下的河网运行、监测数据、预警与任务总览'); banner(); refresh_threshold_alerts(); stats=get_dashboard_statistics()
-    cols=st.columns(6)
-    items=[('河道总数',stats['river_count'],'≈','骨干河网'),('监测站点',stats['station_count'],'⌖','动态数据源'),('控制闸门',stats['gate_count'],'▥','设施状态'),('泵站设施',stats['pump_count'],'◉','运行监测'),('当前预警',stats['alert_count'],'△','阈值识别'),('预测任务',stats['prediction_count'],'ƒ','模型记录')]
-    for c,it in zip(cols,items):
-        with c: metric_card(*it)
-    st.caption(f'数据库最新数据时间：{get_latest_data_time()}')
-    latest=get_latest_station_levels(); left,right=st.columns([1.4,.6],gap='large')
-    with left:
-        section_label('河网运行态势'); st_folium(build_map(latest),height=450,use_container_width=True,key='dashmap')
-    with right:
-        section_label('实时指标'); water=latest[latest.station_type=='水位站'].dropna(subset=['water_level'])
-        if not water.empty:
-            h=water.loc[water.water_level.idxmax()]; st.metric('最高水位',f'{h.water_level:.2f} m',h.station_name)
-        st.metric('24小时累计降雨',f'{get_rainfall_series(24).rainfall.sum():.1f} mm' if not get_rainfall_series(24).empty else '0.0 mm')
-        st.metric('设备在线率','100%')
-        if st.button('模拟接收实时数据',type='primary',use_container_width=True,disabled=not allowed('simulate')):
-            n=simulate_realtime_update(); refresh_threshold_alerts(); add_log(username(),'模拟实时数据接入',details=f'{n}条'); st.rerun()
-    options=get_station_options(); ws=options[options.station_type=='水位站']
-    if not ws.empty:
-        sid=st.selectbox('水位曲线站点',ws.station_id.tolist(),format_func=lambda x:f"{x} {ws.loc[ws.station_id==x,'station_name'].iloc[0]}")
-        df=get_water_level_series(sid,72)
-        if not df.empty:
-            fig=px.line(df,x='monitor_time',y='water_level',markers=True); fig.update_layout(xaxis_title='时间',yaxis_title='水位（m）'); st.plotly_chart(style_plotly_figure(fig,380),use_container_width=True)
+    page_header('运行工作台', '三维空间、水情、模型任务与预警处置集中呈现。')
+    banner()
+    refresh_threshold_alerts()
+    stats = get_dashboard_statistics()
+    cols = st.columns(4)
+    for column, item in zip(cols, [('业务监测站', stats['station_count'], '⌖', '业务数据库'), ('当前预警', stats['alert_count'], '△', '待处置事件'), ('预测任务', stats['prediction_count'], 'ƒ', '已记录任务'), ('河道', stats['river_count'], '≈', '业务登记')]):
+        with column:
+            metric_card(*item)
+    latest = get_latest_station_levels()
+    st.caption(f'数据更新时间：{get_latest_data_time()}')
+    render_scene3d(latest, height=560, key='dashboard_scene')
+    actions = st.columns(3)
+    for column, label, destination in zip(actions, ['查看运行监测', '咨询水知助手', '进入预警中心'], ['运行监测','水知AI助手','预警中心']):
+        with column:
+            if destination in ROLE_PAGES.get(role(), []) and st.button(label, key='dash_'+destination, width='stretch'):
+                st.session_state['pending_backend_nav'] = destination
+                st.rerun()
+    if allowed('simulate') and st.button('模拟接收一批演示数据', type='secondary'):
+        n = simulate_realtime_update()
+        refresh_threshold_alerts()
+        add_log(username(), '模拟实时数据接入', details=f'{n}条')
+        st.rerun()
+    if not latest.empty:
+        st.subheader('最新水情')
+        st.dataframe(latest, width='stretch', hide_index=True)
     research_footer(APP_VERSION)
 
 
 def map_page():
-    page_header('河网GIS地图','数据库运行数据 + 新吴实测站点、闸泵与河道断面参考数据')
-    summary = get_gis_summary()
-    cols = st.columns(5)
-    metrics = [
-        ('实测监测站', summary['station_count']), ('闸泵设施', summary['facility_count']),
-        ('河道数量', summary['river_count']), ('断面数量', summary['section_count']),
-        ('断面测点', summary['section_point_count'])
-    ]
-    for c, (label, value) in zip(cols, metrics):
-        with c: st.metric(label, value)
-    latest = get_latest_station_levels()
-    st_folium(build_map(latest, include_reference=True), height=680, use_container_width=True, key='map')
-    with st.expander('查看数据库监测站最新数据'):
-        st.dataframe(latest, use_container_width=True, hide_index=True)
-    st.caption('river.txt 为新吴本地平面坐标系断面数据，不直接按经纬度叠加到 Folium 地图；已保留为模型输入和后续坐标转换/断面分析数据。')
+    page_header('三维河网', '以真实地表承载空间参考资料和业务水情，选择站点开展定位与研判。')
+    render_scene3d(get_latest_station_levels(), height=720, key='backend_scene')
+    with st.expander('查看业务监测站最新数据'):
+        st.dataframe(get_latest_station_levels(), width='stretch', hide_index=True)
     research_footer(APP_VERSION)
-
 
 def data_page():
     page_header('数据中心','文件留痕、中文字段映射、质量校验、数据库写入和导出'); banner(); t1,t2,t3=st.tabs(['文件导入','数据库查询','上传记录'])
     with t1:
-        dtype=st.selectbox('数据类型',list(DATASET_CONFIG)); st.download_button('下载标准模板',dataframe_to_excel_bytes(TEMPLATES[dtype],dtype),file_name=f'{dtype}模板.xlsx',use_container_width=True)
+        dtype=st.selectbox('数据类型',list(DATASET_CONFIG)); st.download_button('下载标准模板',dataframe_to_excel_bytes(TEMPLATES[dtype],dtype),file_name=f'{dtype}模板.xlsx',width='stretch')
         up=st.file_uploader('上传CSV或Excel',type=['csv','xlsx','xls'])
         if up:
             try:
-                df=read_uploaded_file(up); st.dataframe(df.head(100),use_container_width=True); summary, row_errors=validate_dataframe(dtype,df)
+                df=read_uploaded_file(up); st.dataframe(df.head(100),width='stretch'); summary, row_errors=validate_dataframe(dtype,df)
                 if summary or row_errors:
                     for e in summary: st.error(e)
                     for e in row_errors: st.error(f"第{e['row']}行 {e['field']}: {e['error']}")
@@ -271,7 +157,7 @@ def data_page():
                     result=import_with_validation(dtype,df,username(),up); add_log(username(),'导入数据',details=f'{dtype} 新增{result.inserted}/更新{result.updated}/跳过{result.skipped}',log_type='import'); st.success(f'新增{result.inserted}条，更新{result.updated}条，跳过{result.skipped}条')
             except Exception as e: add_log(username(),'导入数据',result='失败',details=str(e)); st.error(str(e))
     with t2:
-        dtype2=st.selectbox('查询类型',list(DATASET_CONFIG),key='q'); q=query_table(dtype2); st.dataframe(q,use_container_width=True,hide_index=True)
+        dtype2=st.selectbox('查询类型',list(DATASET_CONFIG),key='q'); q=query_table(dtype2); st.dataframe(q,width='stretch',hide_index=True)
         c1,c2,c3=st.columns(3)
         with c1: fmt=st.selectbox('导出格式',['csv','xlsx'],key='efmt')
         with c2: sid=st.text_input('站点筛选(可选)',key='esid')
@@ -285,23 +171,38 @@ def data_page():
             with open(path,'rb') as f: st.download_button('点击下载ZIP',f.read(),file_name=path.name)
     with t3:
         with session_scope() as s: rows=s.scalars(select(UploadedFile).order_by(UploadedFile.id.desc()).limit(200)).all()
-        st.dataframe(pd.DataFrame([{c.name:getattr(r,c.name) for c in UploadedFile.__table__.columns} for r in rows]),use_container_width=True,hide_index=True)
+        st.dataframe(pd.DataFrame([{c.name:getattr(r,c.name) for c in UploadedFile.__table__.columns} for r in rows]),width='stretch',hide_index=True)
     research_footer(APP_VERSION)
 
 
 def monitoring():
-    page_header('监测图表','水位、流量、降雨与潮位多源时序分析'); opt=get_station_options(); ws=opt[opt.station_type=='水位站']; sid=st.selectbox('选择站点',ws.station_id.tolist(),format_func=lambda x:f"{x} {ws.loc[ws.station_id==x,'station_name'].iloc[0]}"); hours=st.slider('最近小时数',12,168,72,12)
-    datasets=[('水位过程',get_water_level_series(sid,hours),'water_level','水位（m）'),('流量过程',get_flow_series(sid,hours),'flow_value','流量（m³/s）'),('降雨过程',get_rainfall_series(hours),'rainfall','降雨（mm）'),('潮位过程',get_tide_series(hours),'tide_level','潮位（m）')]
-    for i in range(0,4,2):
-        a,b=st.columns(2,gap='large')
-        for col,item in zip([a,b],datasets[i:i+2]):
-            with col:
-                title,df,y,ylabel=item; section_label(title)
-                if not df.empty:
-                    fig=px.line(df,x='monitor_time',y=y,markers=True) if y!='rainfall' else px.bar(df.groupby('monitor_time',as_index=False)[y].mean(),x='monitor_time',y=y)
-                    fig.update_layout(xaxis_title='时间',yaxis_title=ylabel); st.plotly_chart(style_plotly_figure(fig,350),use_container_width=True)
+    page_header('运行监测', '三维空间定位与多站点时序分析联动查看；所有数值保留实际单位。')
+    options = get_station_options()
+    water_stations = options[options.station_type=='水位站']
+    ids = water_stations.station_id.tolist()
+    names = dict(zip(water_stations.station_id, water_stations.station_name))
+    selected = st.multiselect('监测站点', ids, default=ids[:3], format_func=lambda sid: f'{sid} · {names[sid]}')
+    hours = st.slider('最近小时数',12,168,72,12)
+    render_scene3d(get_latest_station_levels(), height=430, key='monitor_scene', focus_station=selected[0] if selected else None)
+    if not selected:
+        st.info('请选择至少一个监测站。')
+        return
+    series = [
+        ('水位过程', pd.concat([get_water_level_series(sid,hours) for sid in selected], ignore_index=True), 'water_level','水位（m）'),
+        ('流量过程', pd.concat([get_flow_series(sid,hours) for sid in selected], ignore_index=True), 'flow_value','流量（m³/s）'),
+        ('降雨过程', get_rainfall_series(hours), 'rainfall','降雨（mm）'),
+        ('潮位过程', get_tide_series(hours), 'tide_level','潮位（m）')]
+    tabs = st.tabs([item[0] for item in series])
+    for tab, (title, frame, value, unit) in zip(tabs, series):
+        with tab:
+            if frame.empty:
+                st.info('所选时间范围没有数据。')
+                continue
+            st.plotly_chart(time_series_figure(frame,'monitor_time',value,unit,title=title),width='stretch')
+            with st.expander('查看原始数值'):
+                st.dataframe(frame,width='stretch',hide_index=True)
+                st.download_button('下载当前序列',frame.to_csv(index=False).encode('utf-8-sig'),f'{value}_series.csv','text/csv',key='monitor_download_'+value)
     research_footer(APP_VERSION)
-
 
 def prediction():
     page_header('水动力预测','兼容数据库站点与新吴实测GIS站点；预测结果保存水位与流量序列')
@@ -343,14 +244,9 @@ def prediction():
             c2.metric('风险等级',pred['risk_level'])
             c3.metric('超4.5m时段',f"{pred.get('over_hours',0)} h")
             st.caption(f"站点：{pred.get('station_name','—')}（{pred.get('station_id','—')}）")
-            fig = px.line(df,x='predict_time',y='predicted_level',markers=True)
-            fig.add_hline(y=4.5,line_dash='dash')
-            st.plotly_chart(style_plotly_figure(fig,390),use_container_width=True)
-            if 'predicted_flow' in df.columns and df['predicted_flow'].notna().any():
-                flow_fig = px.line(df,x='predict_time',y='predicted_flow',markers=True)
-                flow_fig.update_layout(yaxis_title='预测流量')
-                st.plotly_chart(style_plotly_figure(flow_fig,260),use_container_width=True)
-    st.dataframe(list_prediction_tasks(),use_container_width=True,hide_index=True)
+            st.plotly_chart(prediction_figure(df), width='stretch')
+            st.caption('拖动旋转查看预测时效、水位与流量的关系；本页使用演示模型。')
+    st.dataframe(list_prediction_tasks(),width='stretch',hide_index=True)
     research_footer(APP_VERSION)
 
 
@@ -386,20 +282,26 @@ def scheduling():
             add_log(username(),'生成调度方案',details=pred['task_code'])
             st.rerun()
     plans = get_latest_plans()
-    st.dataframe(plans,use_container_width=True,hide_index=True)
+    st.dataframe(plans,width='stretch',hide_index=True)
     research_footer(APP_VERSION)
 
 
 def compare():
-    page_header('方案比较','安全、排涝、能耗与综合评分对比'); plans=get_latest_plans()
-    if plans.empty: st.info('暂无方案。'); return
-    fig=go.Figure()
-    for r in plans.itertuples(index=False): fig.add_trace(go.Scatterpolar(r=[max(0,100-r.max_level*15),min(r.drainage_volume,100),max(0,100-r.energy_index),max(0,100-r.gate_actions*5),r.score],theta=['水位安全','排涝能力','节能性','设备平稳','综合评分'],fill='toself',name=f'方案{r.plan_code}'))
-    st.plotly_chart(style_plotly_figure(fig,520),use_container_width=True); code=st.selectbox('推荐方案',plans.plan_code.tolist())
+    page_header('方案比较', '以实际模型指标比较水位、排水和能耗，保留人工推荐与审核。')
+    plans = get_latest_plans()
+    if plans.empty:
+        st.info('尚无候选方案，请先运行预测并生成调度方案。')
+        return
+    st.plotly_chart(comparison_figure(plans), width='stretch')
+    st.caption('水位和能耗越低越优；排水指标越高越优。不同指标不能直接视作同一量纲。')
+    code = st.selectbox('推荐方案', plans.plan_code.tolist())
     if st.button('审核并推荐',type='primary',disabled=not allowed('schedule')):
-        rid=int(plans.loc[plans.plan_code==code,'id'].iloc[0]); select_plan(rid,username()); add_log(username(),'审核推荐方案',details=code); st.rerun()
-    st.dataframe(plans,use_container_width=True,hide_index=True); research_footer(APP_VERSION)
-
+        rid = int(plans.loc[plans.plan_code==code,'id'].iloc[0])
+        select_plan(rid,username())
+        add_log(username(),'审核推荐方案',details=code)
+        st.rerun()
+    st.dataframe(plans,width='stretch',hide_index=True)
+    research_footer(APP_VERSION)
 
 def alerts():
     page_header('预警中心','阈值预警生成、确认和解除'); refresh_threshold_alerts()
@@ -408,7 +310,7 @@ def alerts():
     level_colors={"蓝色":"🔵","黄色":"🟡","橙色":"🟠","红色":"🔴"}
     if not df.empty and "alert_level" in df.columns:
         df["alert_level"] = df["alert_level"].apply(lambda x: f"{level_colors.get(x, '')}{x}")
-    st.dataframe(df,use_container_width=True,hide_index=True)
+    st.dataframe(df,width='stretch',hide_index=True)
     if not df.empty and allowed('alert'):
         aid=st.selectbox('选择预警',df.id.tolist()); action=st.radio('处理方式',['确认','解除'],horizontal=True)
         if st.button('提交处理',type='primary'):
@@ -422,7 +324,7 @@ def alerts():
 def models():
     page_header('模型管理','模型登记、状态和接口');
     with session_scope() as s: rows=s.scalars(select(ModelRegistry).order_by(ModelRegistry.id)).all()
-    st.dataframe(pd.DataFrame([{c.name:getattr(r,c.name) for c in ModelRegistry.__table__.columns} for r in rows]),use_container_width=True,hide_index=True); research_footer(APP_VERSION)
+    st.dataframe(pd.DataFrame([{c.name:getattr(r,c.name) for c in ModelRegistry.__table__.columns} for r in rows]),width='stretch',hide_index=True); research_footer(APP_VERSION)
 
 
 def system():
@@ -443,7 +345,7 @@ def system():
                     s2, m2 = change_password(username(), old_pwd, new_pwd)
                     st.success(m2) if s2 else st.error(m2)
         users = list_users()
-        st.dataframe(pd.DataFrame([{'用户名':x['username'],'角色':x['role'],'启用':x['enabled'],'最后登录':x['last_login_at']} for x in users]),use_container_width=True,hide_index=True)
+        st.dataframe(pd.DataFrame([{'用户名':x['username'],'角色':x['role'],'启用':x['enabled'],'最后登录':x['last_login_at']} for x in users]),width='stretch',hide_index=True)
         targets = [x['username'] for x in users if x['username'] != username()]
         if allowed('users') and targets:
             mu = st.selectbox('选择要管理的用户', targets)
@@ -467,7 +369,7 @@ def system():
             path = Path(info['path'])
             add_log(username(),'生成完整备份',details=f"{path.name} MD5={info['checksum']}",log_type='backup')
             st.success(f"备份完成：{info['table_count']} 个表，MD5 {info['checksum']}")
-            st.download_button('下载备份',path.read_bytes(),file_name=path.name,use_container_width=True)
+            st.download_button('下载备份',path.read_bytes(),file_name=path.name,width='stretch')
         restore_file = st.file_uploader('校验/恢复JSON备份',type=['json'],key='restore_json')
         if restore_file:
             candidate = BACKUP_DIR / 'restore_candidate.json'
@@ -487,11 +389,11 @@ def system():
                 st.error(check.get('error','备份校验失败'))
         st.warning('PostgreSQL整库级备份仍建议使用 scripts/backup_postgres.ps1 或服务器计划任务。')
     section_label('操作日志')
-    st.dataframe(query_logs(),use_container_width=True,hide_index=True)
+    st.dataframe(query_logs(),width='stretch',hide_index=True)
     research_footer(APP_VERSION)
 
 def _set_public_page(page_name: str, backend_target: str | None = None) -> None:
-    st.session_state['public_page'] = page_name
+    st.session_state['pending_public_page'] = page_name
     if backend_target:
         st.session_state['pending_backend_page'] = backend_target
     st.rerun()
@@ -499,33 +401,31 @@ def _set_public_page(page_name: str, backend_target: str | None = None) -> None:
 
 def public_portal() -> None:
     public_topbar()
-    public_pages = ['首页','平台概览','GIS全景','数字孪生','智能能力','技术架构','关于平台','登录平台']
-    current = st.session_state.get('public_page','首页')
-    if current not in public_pages:
-        current = '首页'
-    page = st.radio(
-        '网站导航', public_pages, index=public_pages.index(current), horizontal=True,
-        label_visibility='collapsed', key=f'public_nav_{current}'
-    )
-    st.session_state['public_page'] = page
+    public_pages = ['首页','实景三维','数字孪生','水知AI助手','平台概览','关于平台','登录平台']
+    pending = st.session_state.pop('pending_public_page',None)
+    if pending in public_pages:
+        st.session_state['public_page'] = pending
+    if st.session_state.get('public_page','首页') not in public_pages:
+        st.session_state['public_page'] = '首页'
+    page = st.radio('网站导航',public_pages,horizontal=True,label_visibility='collapsed',key='public_page')
     if page == '首页':
         render_command_center_home(_set_public_page)
-    elif page == '平台概览':
-        render_overview()
-    elif page == 'GIS全景':
-        render_gis(build_map)
+    elif page == '实景三维':
+        render_gis()
     elif page == '数字孪生':
         render_digital_twin()
-    elif page == '智能能力':
-        render_capabilities()
-    elif page == '技术架构':
-        render_architecture()
+    elif page == '水知AI助手':
+        render_assistant()
+    elif page == '平台概览':
+        render_overview()
     elif page == '关于平台':
-        render_about()
+        intro, capabilities, architecture = st.tabs(['平台介绍','业务能力','数据架构'])
+        with intro: render_about()
+        with capabilities: render_capabilities()
+        with architecture: render_architecture()
     elif page == '登录平台':
         login()
     public_footer()
-
 
 if not user():
     public_portal()
@@ -535,12 +435,15 @@ with st.sidebar:
     sidebar_brand(APP_VERSION)
     st.write(f"用户：**{username()}**  \n角色：**{role()}**")
     pages=ROLE_PAGES.get(role(),['平台首页'])
+    pending = st.session_state.pop('pending_backend_nav',None)
+    if pending in pages:
+        st.session_state['backend_nav'] = pending
     requested = st.session_state.get('backend_nav')
     if requested not in pages:
         st.session_state['backend_nav'] = pages[0]
     page=st.radio('导航',pages,label_visibility='collapsed',key='backend_nav')
     st.divider()
-    if st.button('退出登录',use_container_width=True,type='primary',key='logout_btn'):
+    if st.button('退出登录',width='stretch',type='primary',key='logout_btn'):
         add_log(username(),'退出平台')
         st.session_state.pop('user',None)
         st.session_state.pop('backend_nav',None)
@@ -548,4 +451,5 @@ with st.sidebar:
         st.session_state['public_page']='首页'
         st.rerun()
 
-{'平台首页':dashboard,'河网GIS地图':map_page,'数据中心':data_page,'监测图表':monitoring,'水动力预测':prediction,'智能调度':scheduling,'方案比较':compare,'预警中心':alerts,'模型管理':models,'系统管理':system}[page]()
+public_topbar()
+{'平台首页':dashboard,'水知AI助手':lambda:render_assistant(user()),'三维河网':map_page,'数据中心':data_page,'运行监测':monitoring,'水动力预测':prediction,'智能调度':scheduling,'方案比较':compare,'预警中心':alerts,'模型管理':models,'系统管理':system}[page]()

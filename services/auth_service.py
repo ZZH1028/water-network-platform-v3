@@ -10,6 +10,7 @@ from sqlalchemy import select
 
 from database.engine import session_scope
 from database.models import User
+from core.config import PUBLIC_DEPLOYMENT
 
 ITERATIONS = 260_000
 
@@ -34,6 +35,8 @@ def verify_password(password: str, encoded: str) -> bool:
 
 
 def validate_password_strength(password: str) -> tuple[bool, str]:
+    if PUBLIC_DEPLOYMENT and (len(password) < 12 or password in {"admin123", "demo123"}):
+        return False, "公网账号密码至少12位，并包含字母和数字"
     if len(password) < 8:
         return False, "密码长度至少为8位"
     if not re.search(r"[a-zA-Z]", password):
@@ -44,6 +47,8 @@ def validate_password_strength(password: str) -> tuple[bool, str]:
 
 
 def authenticate(username: str, password: str) -> dict | None:
+    if PUBLIC_DEPLOYMENT and password in {"admin123", "demo123"}:
+        return None
     with session_scope() as session:
         user = session.scalar(select(User).where(User.username == username, User.enabled.is_(True)))
         if not user or not verify_password(password, user.password_hash):

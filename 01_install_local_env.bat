@@ -14,17 +14,16 @@ if not exist ".venv\Scripts\python.exe" (
   py -m venv .venv || goto :failed
 )
 
-echo [2/3] Installing dependencies from Aliyun PyPI mirror...
-".venv\Scripts\python.exe" -m pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-if errorlevel 1 (
-  echo.
-  echo [WARN] Aliyun mirror failed. Retrying with TUNA mirror...
-  ".venv\Scripts\python.exe" -m pip install -r requirements.txt -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple --trusted-host mirrors.tuna.tsinghua.edu.cn
-  if errorlevel 1 goto :failed
-)
+echo [2/3] Installing dependencies with HTTPS verification...
+".venv\Scripts\python.exe" -m pip install -r requirements.txt --index-url https://pypi.org/simple
+if errorlevel 1 goto :failed
+
+echo [3/3] Preparing verified Cesium browser assets...
+".venv\Scripts\python.exe" scripts\setup_scene_assets.py
+if errorlevel 1 goto :failed
 
 echo.
-echo [3/3] Environment ready.
+echo Environment ready.
 echo Run 02_run_local_sqlite.bat to open the Web portal.
 pause
 exit /b 0

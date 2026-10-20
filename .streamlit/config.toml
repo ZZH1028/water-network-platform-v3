@@ -1,8 +1,8 @@
 [theme]
-primaryColor = "#18CBE8"
-backgroundColor = "#071018"
-secondaryBackgroundColor = "#0E2630"
-textColor = "#EAF7FB"
+primaryColor = "#43D2B5"
+backgroundColor = "#081321"
+secondaryBackgroundColor = "#101F31"
+textColor = "#EDF4FA"
 font = "sans serif"
 
 [server]
@@ -11,6 +11,7 @@ port = 8501
 headless = true
 runOnSave = true
 maxUploadSize = 300
+enableStaticServing = true
 
 [browser]
 gatherUsageStats = false

@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parents[1]
+load_dotenv(BASE_DIR / '.env', override=False)
 
 APP_NAME = os.getenv("APP_NAME", "水网工程水力调控智能平台")
-APP_VERSION = os.getenv("APP_VERSION", "V1.0 河网一体化调度平台")
+APP_VERSION = os.getenv("APP_VERSION", "V5.0 实景三维 · 水知助手")
 APP_ENV = os.getenv("APP_ENV", "development")
+PUBLIC_DEPLOYMENT = APP_ENV.lower() in {"public", "production"}
 DEMO_MODE = os.getenv("DEMO_MODE", "true").lower() == "true"
 SEED_DEMO_DATA = os.getenv("SEED_DEMO_DATA", "true").lower() == "true"
 

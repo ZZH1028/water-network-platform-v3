@@ -2,9 +2,16 @@
 __pycache__/
 *.pyc
 .env
+.env.*
+!.env*.example
 .streamlit/secrets.toml
-database/*.db
+database/*.db*
 storage/uploads/*
 backups/*
 logs/*
 reports/*
+static/cesium/
+storage/knowledge/
+storage/exports/
+tests/*.db*
+.pytest_cache/
