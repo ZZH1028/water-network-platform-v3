@@ -1,0 +1,62 @@
+{
+  "author": {
+    "name": "Zehan Zhang",
+    "affiliation": "Hohai University",
+    "country": "China",
+    "email": "3993472947@qq.com"
+  },
+  "body_font_setting": "Times New Roman 10 pt",
+  "PDF_render_font": "Liberation Serif (installed metrically compatible substitute)",
+  "abstract_words": 195,
+  "keywords": 5,
+  "figures": 2,
+  "tables": 2,
+  "references": 8,
+  "pdf_checks": {
+    "CSCWD2027_Zehan_Zhang.pdf": {
+      "pages": 5,
+      "A4": true,
+      "encrypted": false,
+      "searchable_text": true,
+      "all_fonts_embedded": true,
+      "annotations": 0,
+      "attachments": 0,
+      "bookmarks": 0
+    },
+    "CSCWD2027_Anonymous.pdf": {
+      "pages": 5,
+      "A4": true,
+      "encrypted": false,
+      "searchable_text": true,
+      "all_fonts_embedded": true,
+      "annotations": 0,
+      "attachments": 0,
+      "bookmarks": 0
+    }
+  },
+  "source_cells_checked": 9395,
+  "source_cells_matching": 9395,
+  "workflow_scenarios_passed": 15,
+  "real_review_packets_open": 31,
+  "conference_specific_format_verified": false,
+  "official_template_file_obtained": false,
+  "rendering_note": "Page counts reflect the supplied PDFs, not a guarantee for every Word/font installation.",
+  "files": {
+    "CSCWD2027_Zehan_Zhang.docx": {
+      "sha256": "aeecb38fe33586680bc5548ab5fbb58dfaf70fc127a8e19aa31657dc9e03db88",
+      "bytes": 272704
+    },
+    "CSCWD2027_Anonymous.docx": {
+      "sha256": "9f2a119bdf0626d01a570fa44ca8a88c559363fe3c1247f6a36f5bbd321c5955",
+      "bytes": 272651
+    }
+  },
+  "independent_clean_reproduction": {
+    "commands_passed": 13,
+    "comparisons_passed": 17,
+    "evidence_tests_passed": 8,
+    "protocol_scenarios_passed": 15,
+    "report": "/workspace/paper_cscwd_reproduction/REPORT.md"
+  },
+  "packaged_runner_clean_rebuild": "PASS: all substantive metrics matched; 31 open packets"
+}
